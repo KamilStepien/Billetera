@@ -6,5 +6,5 @@
     <div class="tranzaction-score" fxFlex = "33" fxLayoutAlign="center center" >{{transactionInput?.amount | currency }}</div>
     <button class="transaction-delete" (click) = "deleteTransaction(element,id.value)">X</button>
     <button class="transaction-edit">Edit</button>
-    <p class="transaction-date">{{transactionInput?.createDate | date:'short'  }}</p>
+    <p class="transaction-date">{{transactionInput?.createDate | date  }}</p>
 </div>

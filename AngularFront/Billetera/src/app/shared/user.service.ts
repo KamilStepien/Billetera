@@ -8,9 +8,8 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-  userlog: UserModule;
- 
-
+  public userlog: UserModule ;
+  
   errormessage:string = "";
   
   
@@ -38,7 +37,7 @@ export class UserService {
       error => this.errormessage = error.error.message
     )
 
-    console.log(this.userlog);
+  ;
   }
   
 

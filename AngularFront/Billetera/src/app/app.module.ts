@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MenuComponent } from './main-continer/menu/menu.component';
 import { TransactionsListComponent } from './main-continer/transactions/transactions-list/transactions-list.component';
 import { TransactionsListElementComponent } from './main-continer/transactions/transactions-list-element/transactions-list-element.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { JarsComponent } from './main-continer/jars/jars.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +37,9 @@ import { TransactionsListElementComponent } from './main-continer/transactions/t
     TransactionAddComponent,
     MenuComponent,
     TransactionsListComponent,
-    TransactionsListElementComponent
+    TransactionsListElementComponent,
+    JarsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,9 @@ import { TransactionsListElementComponent } from './main-continer/transactions/t
     MatInputModule,
     MatCardModule,
     FlexLayoutModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatFormFieldModule,
+    MatDialogModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

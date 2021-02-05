@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FullRESTAPI.Controllers
 {
-    [Authorize]
+    
     [ApiController]
     [Route("[controller]")]
     public class TransactionController : Controller
@@ -26,30 +26,26 @@ namespace FullRESTAPI.Controllers
 
         
         [HttpGet("user/{userId}")]
-
-        public async Task<ActionResult<IEnumerable<TransactionModel>>> GetTrasactions(int userId)
+        public ActionResult<IEnumerable<TransactionModel>> GetTrasactions(int userId)
         {
-            var accessToken = await HttpContext.GetTokenAsync("access_token");
-
-            IEnumerable<TransactionModel> transactions = _transactionService.GetAll(userId, accessToken);
-            
-            if (transactions == null)
+            try
             {
-                return BadRequest(new { message = "Category element  is null or userID == 0" });
+                IEnumerable<TransactionModel> transactions = _transactionService.GetAll(userId);
+                return Ok(transactions);
             }
-
-
-            return Ok(transactions);
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
 
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TransactionModel>> GetTrasaction( int id)
+        public  ActionResult<TransactionModel> GetTrasaction(int id)
         {
             try
             {
-                var accessToken = await HttpContext.GetTokenAsync("access_token");
-                return Ok(_transactionService.GetTransaction(id, accessToken));
+                return Ok(_transactionService.GetTransaction(id));
             }
             catch (Exception ex)
             {
@@ -59,7 +55,7 @@ namespace FullRESTAPI.Controllers
 
 
         [HttpPost]
-        public ActionResult<TransactionModel> AddTransaction([FromBody]  TransactionAddEditModel model)
+        public ActionResult<TransactionModel> AddTransaction([FromBody]  TransactionAddModel model)
         {
             try
             {
@@ -72,12 +68,11 @@ namespace FullRESTAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async  Task<ActionResult> DeleteTrasaction(int id)
+        public   ActionResult DeleteTrasaction(int id)
         {
             try
             {
-                var accessToken = await HttpContext.GetTokenAsync("access_token");
-                _transactionService.Delete( id, accessToken);
+                _transactionService.Delete( id);
                 return Ok();
             }
             catch (Exception ex)
@@ -87,7 +82,7 @@ namespace FullRESTAPI.Controllers
         }
 
         [HttpPut]
-        public ActionResult EditTransaction([FromBody]  TransactionAddEditModel model)
+        public ActionResult<TransactionModel> EditTransaction([FromBody]  TransactionEditModel model)
         {
             try
             {

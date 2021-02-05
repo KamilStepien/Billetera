@@ -9,16 +9,20 @@ export interface TransactionModel
     amount:number,
     isExpanse:boolean
 }
-export interface TransactionDeleteModel
-{
-    id:number,
-    userId:number
-}
-export interface TransactionAddEditModel
+
+export interface TransactionEditModel
 {
     id:number,
     categorieId:number,
-    userId:number,
+    title:string,
+    createDate:Date,
+    amount:number,
+    isExpanse:boolean
+}
+
+export interface TransactionAddModel 
+{
+    categorieId:number,
     title:string,
     createDate:Date,
     amount:number,

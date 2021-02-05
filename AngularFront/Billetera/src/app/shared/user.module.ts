@@ -8,10 +8,7 @@ export interface UserModule
     token:string;
 }
 
-export interface UserGetModel
-{
-    userId:number
-}
+
 
 export interface UserRegisterModel
 {

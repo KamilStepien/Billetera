@@ -14,11 +14,11 @@ namespace FullRESTAPI.Services
     public interface ITransactionService
     {
 
-        IEnumerable<TransactionModel> GetAll( int userId, string token);
-        TransactionModel GetTransaction(int id, string token);
-        TransactionModel Add(TransactionAddEditModel model);
-        TransactionModel Edit(TransactionAddEditModel model);
-        void Delete(int id, string token);
+        IEnumerable<TransactionModel> GetAll( int userId);
+        TransactionModel GetTransaction(int id);
+        TransactionModel Add(TransactionAddModel model);
+        TransactionModel Edit(TransactionEditModel model);
+        void Delete(int id);
 
 
     }
@@ -33,7 +33,7 @@ namespace FullRESTAPI.Services
             _applicationDBContex = applicationDBContex;
         }
 
-        public TransactionModel Add(TransactionAddEditModel model)
+        public TransactionModel Add(TransactionAddModel model)
         {
             if (model == null)
                 throw new ArgumentException("The object entering the function is null");
@@ -79,14 +79,10 @@ namespace FullRESTAPI.Services
             };
         }
 
-        public void Delete(int userId, string token)
+        public void Delete(int id)
         {
 
-            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == userId);
-            if (user == null || user.Token != token)
-                throw new ArgumentException("User id is wrong");
-
-            var transaction = _applicationDBContex.Transactions.FirstOrDefault(x => x.User.ID == userId);
+            var transaction = _applicationDBContex.Transactions.FirstOrDefault(x => x.ID == id);
 
             if(transaction == null)
                 throw new ArgumentException("Can't  delete this trasaction because don't exist ");
@@ -96,7 +92,7 @@ namespace FullRESTAPI.Services
 
         }
 
-        public TransactionModel Edit(TransactionAddEditModel model)
+        public TransactionModel Edit(TransactionEditModel model)
         {
 
             if (model == null)
@@ -141,12 +137,12 @@ namespace FullRESTAPI.Services
             }; ;
         }
 
-        public IEnumerable<TransactionModel> GetAll(int userId, string token)
+        public IEnumerable<TransactionModel> GetAll(int userId)
         {
 
             var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == userId);
 
-            if (user == null || user.Token != token)
+            if (user == null )
                 throw new ArgumentException("User id is wrong");
 
             List<TransactionModel> transactions = new List<TransactionModel>();
@@ -177,21 +173,13 @@ namespace FullRESTAPI.Services
             return transactions;
         }
 
-        public TransactionModel GetTransaction(int id, string token)
+        public TransactionModel GetTransaction(int id)
         {
-            
-
-            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == id);
-
-
-            if (user == null || user.Token != token)
-                throw new ArgumentException("User id is wrong");
-
             var transaction = _applicationDBContex
                 .Transactions
                 .Include(y => y.Categorie)
                 .Include(z => z.Categorie.CategoriesLists)
-                .FirstOrDefault(x => x.User.ID == id );
+                .FirstOrDefault(x => x.ID == id );
 
             if (transaction == null)
                 throw new ArgumentException("Can't  get this trasaction because don't exist ");

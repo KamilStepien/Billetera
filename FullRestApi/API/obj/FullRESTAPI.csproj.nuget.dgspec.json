@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bezi\\Desktop\\inżynierkaProjekt\\FullRestApi\\API\\FullRESTAPI.csproj": {}
+    "C:\\Users\\Bezi\\Desktop\\inżynierkaProjekt — kopia\\FullRestApi\\API\\FullRESTAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bezi\\Desktop\\inżynierkaProjekt\\FullRestApi\\API\\FullRESTAPI.csproj": {
+    "C:\\Users\\Bezi\\Desktop\\inżynierkaProjekt — kopia\\FullRestApi\\API\\FullRESTAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bezi\\Desktop\\inżynierkaProjekt\\FullRestApi\\API\\FullRESTAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Bezi\\Desktop\\inżynierkaProjekt — kopia\\FullRestApi\\API\\FullRESTAPI.csproj",
         "projectName": "FullRESTAPI",
-        "projectPath": "C:\\Users\\Bezi\\Desktop\\inżynierkaProjekt\\FullRestApi\\API\\FullRESTAPI.csproj",
+        "projectPath": "C:\\Users\\Bezi\\Desktop\\inżynierkaProjekt — kopia\\FullRestApi\\API\\FullRESTAPI.csproj",
         "packagesPath": "C:\\Users\\Bezi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bezi\\Desktop\\inżynierkaProjekt\\FullRestApi\\API\\obj\\",
+        "outputPath": "C:\\Users\\Bezi\\Desktop\\inżynierkaProjekt — kopia\\FullRestApi\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

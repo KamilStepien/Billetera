@@ -1,12 +1,21 @@
 
-
-  <mat-toolbar color="primary">
+<mat-toolbar color="primary">
     <span><a [routerLink]="['/']">Billetera </a></span>
     <span class="spacer"></span>
-    <button mat-button [routerLink]="['/authenticate']" >Sing In</button>
-    <button mat-raised-button [routerLink]="['/register']">  Sing Up</button>
+    <div *ngIf="!service.userlog" class="button-box">
+        <button  mat-button [routerLink]="['/authenticate']" >Sing In</button>
+        <button  mat-raised-button [routerLink]="['/register']">  Sing Up</button>
+    </div>
+    <div *ngIf="service.userlog" class="button-box">
+        <img class="user-avatar" src="../assets/images/image.png" [routerLink]="['/register']" alt="Can't display photo">
+        <button  mat-button >Log out</button>
+    </div>
+   
   </mat-toolbar>
-  <router-outlet></router-outlet>
- 
+  <div class="continer" fxLayoutAlign="center top" fxLayout="row" >
+  <app-menu *ngIf="service.userlog" fxFlex="20" ></app-menu>
+  <router-outlet ></router-outlet>
+  </div>
+  
   
 

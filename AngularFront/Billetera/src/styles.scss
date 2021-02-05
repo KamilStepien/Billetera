@@ -2,8 +2,38 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.continer {
-    padding-top: 100px;
-    height: 80%;
-}
 
+.mat-card
+{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .form-continer
+    {
+        padding: 30px;
+        border-radius: 10px;
+        width: 250px;
+    }
+   
+
+    h3
+    {
+        color:  rgb(230, 32, 32);
+        margin: 20px 0 ;
+    }
+    
+    form
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        button 
+        {
+            margin-top: 10px;
+            width: 100%;
+        }
+    }
+
+}

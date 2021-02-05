@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from 'src/app/shared/transaction.service';
+import { TransactionModel } from 'src/app/shared/transactions.model';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-transactions-list',
@@ -8,14 +10,12 @@ import { TransactionService } from 'src/app/shared/transaction.service';
 })
 export class TransactionsListComponent implements OnInit {
 
-  constructor(public service:TransactionService) { }
+  constructor(public service:TransactionService, public userService:UserService) { }
 
   ngOnInit(): void 
   {
-    this.service.getTransactions();
+    this.service.getTransactions(this.userService.userlog.id)
+
   }
-
-
-  
 
 }
