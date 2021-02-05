@@ -1,0 +1,37 @@
+
+.cointaner 
+{
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    mat-card
+    {
+        padding: 40px;
+        border-radius: 10px;
+        width: 250px;
+    }
+   
+
+    h3
+    {
+        color:  rgb(230, 32, 32);
+        margin: 20px 0 ;
+    }
+    
+    form
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        button 
+        {
+            margin-top: 10px;
+            width: 100%;
+        }
+    }
+
+}

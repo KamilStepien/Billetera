@@ -1,0 +1,25 @@
+.transaction-continer
+{
+    min-height:  60px;
+    border: solid rgb(206, 206, 206) 1px;
+    width: 100%;
+    border-radius: 5px;
+    margin: 7px;
+    position: relative;
+    .transaction-delete, .transaction-edit, .transaction-date
+    {
+        position: absolute;
+    }
+    .transaction-edit
+    {
+        right: 0;
+    }
+    .transaction-date
+    {
+        bottom: -10px;
+        right: 10px;
+        color: rgb(161, 156, 156);
+    }
+
+}
+

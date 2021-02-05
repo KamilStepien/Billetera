@@ -1,0 +1,35 @@
+<div class="cointaner">
+
+    <mat-card>
+        <mat-card-header> 
+            <H2>Login</H2>
+        </mat-card-header>
+    <h3>{{service.errormessage}}</h3>
+    <form [formGroup]="userRegister">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>First Name</mat-label>
+            <input type="text" matInput placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+
+
+        <div class="form-group">
+            <button  mat-raised-button type="submit"   (click)="registerUser()" [disabled]="userRegister.invalid">
+                Sing Up
+            </button>
+        </div>
+    </form>
+    </mat-card>
+</div>

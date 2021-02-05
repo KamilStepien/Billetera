@@ -1,0 +1,29 @@
+
+    mat-toolbar
+    {
+        span
+        {
+            
+
+            a 
+            {
+                color:white;
+                font-size: larger;
+                font-weight: 600;
+                text-decoration: none;
+            }
+        }
+        .spacer 
+        {
+            flex: 1 1 auto;
+        }        
+        button
+        {
+            margin: 1%;
+        }
+    }
+
+   
+
+
+
