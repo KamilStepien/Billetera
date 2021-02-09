@@ -21,10 +21,10 @@ namespace FullRESTAPI.Controllers
             _jarService = jarService;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<JarModel>> GetJars(UserGetModel model)
+        [HttpGet("user{userId}")]
+        public ActionResult<IEnumerable<JarModel>> GetJars(int userId)
         {
-            IEnumerable<JarModel> jars = _jarService.GetAll(model);
+            IEnumerable<JarModel> jars = _jarService.GetAll(userId);
 
             if (jars == null  )
             {
@@ -37,11 +37,11 @@ namespace FullRESTAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<JarModel> GetJar(int id, UserGetModel model)
+        public ActionResult<JarModel> GetJar(int id)
         {
             try
             {
-                return Ok(_jarService.GetJar(id, model));
+                return Ok(_jarService.GetJar(id));
             }
             catch (Exception ex)
             {
@@ -62,12 +62,12 @@ namespace FullRESTAPI.Controllers
             }
         }
 
-        [HttpPost("end")]
-        public IActionResult EndJar(JarEndModel model)
+        [HttpPost("end/{id}")]
+        public IActionResult EndJar(int id)
         {
             try
             {
-                _jarService.EndJar(model);
+                _jarService.EndJar(id);
                 return Ok();
             }
             catch (ArgumentException ex)
@@ -76,12 +76,12 @@ namespace FullRESTAPI.Controllers
             }
         }
 
-        [HttpDelete]
-        public ActionResult DeleteJar(JarDeleteModel model)
+        [HttpDelete("{id}")]
+        public ActionResult DeleteJar(int id)
         {
             try
             {
-                _jarService.Delete(model);
+                _jarService.Delete(id);
                 return Ok();
             }
             catch (Exception ex)

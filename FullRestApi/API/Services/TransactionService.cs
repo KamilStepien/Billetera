@@ -146,10 +146,11 @@ namespace FullRESTAPI.Services
                 throw new ArgumentException("User id is wrong");
 
             List<TransactionModel> transactions = new List<TransactionModel>();
-             _applicationDBContex.Transactions
-                .Where(x => x.User.ID == userId)
-                .Include(y => y.Categorie)
-                .Include(z => z.Categorie.CategoriesLists)
+            _applicationDBContex.Transactions
+               .Where(x => x.User.ID == userId)
+               .Include(y => y.Categorie)
+               .Include(z => z.Categorie.CategoriesLists)
+                .OrderBy(d => d.CreateDate)
                 .ToList()
                 .ForEach(x =>
                     {

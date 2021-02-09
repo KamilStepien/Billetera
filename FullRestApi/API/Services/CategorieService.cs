@@ -13,9 +13,9 @@ namespace FullRESTAPI.Services
 
     public interface ICategorieService
     {
-        IEnumerable<CategorieModel> GetAll(UserGetModel model);
-        CategorieModel Add(CategorieModel model);       
-        void  Delete (CategorieDeleteModel model);
+        IEnumerable<CategorieModel> GetAll(int userId);
+        CategorieModel Add(CategorieAddModel model);       
+        void  Delete (int id);
     }
 
 
@@ -30,7 +30,7 @@ namespace FullRESTAPI.Services
         }
 
 
-        public CategorieModel Add(CategorieModel model)
+        public CategorieModel Add(CategorieAddModel model)
         {
             if (model == null)
                 throw new ArgumentException("The object entering the function is null");
@@ -56,18 +56,21 @@ namespace FullRESTAPI.Services
             _applicationDBContex.Categories.Add(efCategorie);
             _applicationDBContex.SaveChanges();
 
-            model.ID = efCategorieList.ID;
+          
 
-            return model;
+            return new CategorieModel
+            {
+                ID = efCategorieList.ID,
+                Name = efCategorieList.Name,
+                UserId = efCategorie.User.ID
+            };
 
         }
 
-        public void Delete(CategorieDeleteModel model)
+        public void Delete(int  id)
         {
-            if (model == null)
-                throw new ArgumentException("The object entering the function is null");
 
-            var efCategorie = _applicationDBContex.Categories.Where(x => x.CategoriesLists.ID == model.ID && x.User.ID == model.UserID).First();
+            var efCategorie = _applicationDBContex.Categories.Where(x => x.ID == id).First();
             
             if (efCategorie == null)
                 throw new ArgumentException("Can't delete this categorie because don't exist ");
@@ -81,17 +84,19 @@ namespace FullRESTAPI.Services
 
        
 
-        public IEnumerable<CategorieModel> GetAll(UserGetModel model)
+        public IEnumerable<CategorieModel> GetAll(int userId)
         {
-            if (model.UserID == 0)
-                return null;
+            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == userId);
+
+            if (user == null)
+                throw new ArgumentException("User id is wrong");
 
             List<CategorieModel> categories = new List<CategorieModel>();
 
-            _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).Where(e => e.User.ID == model.UserID).ToList().ForEach(e =>
+            _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).Where(e => e.User.ID == userId).ToList().ForEach(e =>
             categories.Add(new CategorieModel
             {
-                ID = e.CategoriesLists.ID,
+                ID = e.ID,
                 Name = e.CategoriesLists.Name,
                 UserId = e.User.ID
             })

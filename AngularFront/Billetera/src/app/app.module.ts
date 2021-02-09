@@ -18,14 +18,22 @@ import { UserAuthenticateComponent } from './user-authenticate/user-authenticate
 import { StartPageComponent } from './start-page/start-page.component';
 import { DataboardComponent } from './main-continer/databoard/databoard.component';
 import { TransactionsComponent } from './main-continer/transactions/transactions.component';
-import { TransactionAddComponent } from './main-continer/transactions/transaction-add/transaction-add.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MenuComponent } from './main-continer/menu/menu.component';
 import { TransactionsListComponent } from './main-continer/transactions/transactions-list/transactions-list.component';
 import { TransactionsListElementComponent } from './main-continer/transactions/transactions-list-element/transactions-list-element.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { JarsComponent } from './main-continer/jars/jars.component';
-
+import { TransactionService } from './shared/transaction.service';
+import { CategorieService } from './shared/categorie.service';
+import { CategoriesComponent } from './main-continer/categories/categories.component';
+import { CategorieListElementComponent } from './main-continer/categories/categorie-list-element/categorie-list-element.component';
+import { CategorieListComponent } from './main-continer/categories/categorie-list/categorie-list.component';
+import { CategoriesAddComponent } from './main-continer/categories/categories-add/categories-add.component';
+import { TransactionAddEditComponent } from './main-continer/transactions/transaction-add-edit/transaction-add-edit.component';
+import * as echarts from 'echarts';
+import { NgxEchartsModule } from 'ngx-echarts';
+import {NgPipesModule} from 'ngx-pipes';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,15 +42,22 @@ import { JarsComponent } from './main-continer/jars/jars.component';
     StartPageComponent,
     DataboardComponent,
     TransactionsComponent,
-    TransactionAddComponent,
     MenuComponent,
     TransactionsListComponent,
     TransactionsListElementComponent,
     JarsComponent,
+    CategoriesComponent,
+    CategorieListElementComponent,
+    CategorieListComponent,
+    CategoriesAddComponent,
+    TransactionAddEditComponent,
     
   ],
   imports: [
     BrowserModule,
+    NgxEchartsModule.forRoot({
+      echarts
+    }),
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -54,9 +69,11 @@ import { JarsComponent } from './main-continer/jars/jars.component';
     FlexLayoutModule,
     MatButtonToggleModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    NgPipesModule
+  
   ],
-  providers: [UserService],
+  providers: [UserService,TransactionService, CategorieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

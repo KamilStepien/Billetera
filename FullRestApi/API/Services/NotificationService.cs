@@ -14,7 +14,7 @@ namespace FullRESTAPI.Services
     {
         public IEnumerable<NotificationModel> GetAll(UserGetModel model);
         public void ActiveNotyfication(ActiveNotificationModel model);
-        public void DeactiveNotification(DeactiveNotificationModel model);
+        public void DeactiveNotification(int  id);
     }
     public class NotificationService : INotificationService
     {
@@ -63,17 +63,9 @@ namespace FullRESTAPI.Services
 
         }
 
-        public void DeactiveNotification(DeactiveNotificationModel model)
+        public void DeactiveNotification(int id)
         {
-            if (model == null)
-                throw new ArgumentException("The object entering the function is null");
-
-            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserID);
-
-            if (user == null)
-                throw new ArgumentException("User id is wrong ");
-
-            var notification = _applicationDBContex.Notifications.FirstOrDefault(x => x.ID == model.ID && x.User.ID == model.UserID);
+            var notification = _applicationDBContex.Notifications.FirstOrDefault(x => x.ID == id);
 
             if (notification == null)
                 throw new ArgumentException("The notification id don't exist ");

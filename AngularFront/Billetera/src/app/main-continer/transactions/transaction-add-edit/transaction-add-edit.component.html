@@ -1,0 +1,47 @@
+<mat-card>
+    <div class="form-continer">
+        <mat-card-header>
+            <H2>Transaction</H2>
+        </mat-card-header>
+        <form [formGroup]="transaction">
+            <input  type="hidden" value=0 #id formControlName="id">
+            <mat-label>Categorie</mat-label>
+            <select id="cars"  formControlName="categorieId">
+                <option *ngFor="let item of categorieService.categories"   [ngValue]=item.id>{{item.name}}</option>
+            </select>
+            <mat-form-field class="example-full-width">
+                <mat-label>Title</mat-label>
+                <input type="text" matInput placeholder="title" formControlName="title">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Amount</mat-label>
+                <input type="number" matInput placeholder="amount" formControlName="amount">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Create date</mat-label>
+                <input type="date" matInput placeholder="createDate" formControlName="createDate">
+            </mat-form-field>
+            
+            <mat-label>Type</mat-label>
+            <select formControlName="isExpanse">
+                <option value=true selected>Expanse</option>
+                <option value=false>Incrise</option>
+           
+            </select>
+        
+            <div class="form-group">
+                <button mat-raised-button type="submit" (click)="submit(id.value)" [disabled]="transaction.invalid">
+                    Save
+                </button>
+
+            </div>
+            <div class="form-group">
+                <button mat-raised-button type="submit" [routerLink]="['/transaction']">
+                    Back
+                </button>
+
+            </div>
+        </form>
+
+    </div>
+</mat-card>

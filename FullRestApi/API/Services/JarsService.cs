@@ -13,12 +13,12 @@ namespace FullRESTAPI.Services
 
     public interface IJarService
     {
-        IEnumerable<JarModel> GetAll(UserGetModel model);
-        JarModel GetJar(int id, UserGetModel model);
+        IEnumerable<JarModel> GetAll(int userId);
+        JarModel GetJar(int id);
         JarModel Add(JarAddEditModel model);
         JarModel Edit(JarAddEditModel model);
-        void Delete(JarDeleteModel model);
-        void EndJar(JarEndModel model);
+        void Delete(int id);
+        void EndJar(int  id);
 
 
     }
@@ -70,12 +70,10 @@ namespace FullRESTAPI.Services
 
         }
 
-        public void Delete(JarDeleteModel model)
+        public void Delete(int id)
         {
-            if (model == null)
-                throw new ArgumentException("The object entering the function is null");
-            
-            var jar = _applicationDBContex.Jars.FirstOrDefault(x => x.User.ID == model.UserID && x.ID == model.ID);
+
+            var jar = _applicationDBContex.Jars.FirstOrDefault(x => x.ID == id);
             
             if (jar == null)
                 throw new ArgumentException("Can't  delete this jar because don't exist ");
@@ -121,12 +119,11 @@ namespace FullRESTAPI.Services
 
         }
 
-        public void EndJar(JarEndModel model)
+        public void EndJar(int  id)
         {
-            if (model == null)
-                throw new ArgumentException("The object entering the function is null");
+          
 
-            var jar = _applicationDBContex.Jars.FirstOrDefault(x => x.User.ID == model.UserID && x.ID == model.ID);
+            var jar = _applicationDBContex.Jars.FirstOrDefault(x =>  x.ID == id );
 
             if (jar == null)
                 throw new ArgumentException("Can't  end this jar because don't exist ");
@@ -142,15 +139,15 @@ namespace FullRESTAPI.Services
 
         }
 
-        public IEnumerable<JarModel> GetAll(UserGetModel model)
+        public IEnumerable<JarModel> GetAll(int  userId)
         {
-            if (model.UserID == 0)
+            if (userId == 0)
                 return null;
 
             List<JarModel> jars = new List<JarModel>();
 
             _applicationDBContex.Jars
-                .Where(x => x.User.ID == model.UserID)
+                .Where(x => x.User.ID == userId)
                 .ToList()
                 .ForEach(x =>
                 {
@@ -170,20 +167,13 @@ namespace FullRESTAPI.Services
             return jars;
         }
 
-        public JarModel GetJar(int id, UserGetModel model)
+        public JarModel GetJar(int id)
         {
 
-            if (model == null)
-                throw new ArgumentException("The object entering the function is null");
-
-            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserID);
-
-            if (user == null)
-                throw new ArgumentException("User id is wrong ");
 
             var jar = _applicationDBContex
                 .Jars 
-                .FirstOrDefault(y => y.User.ID == model.UserID && y.ID == id);
+                .FirstOrDefault(y => y.ID == id);
 
             if (jar == null)
                 throw new ArgumentException("Can't  get this jar because don't exist ");

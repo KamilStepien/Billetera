@@ -1,0 +1,6 @@
+<div class="categorie-continer" fxLayout="row" #element >
+    <input #id type="hidden" [value]="categorieInput?.id" >
+    <div class="categorie-name" fxLayoutAlign="center  center "  >{{categorieInput?.name}}</div>
+    <button class="transaction-delete" (click) = "deleteCategory(element,id.value)" >X</button>
+    
+</div>

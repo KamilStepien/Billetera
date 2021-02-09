@@ -14,7 +14,7 @@ namespace FullRESTAPI.Services
     {
         IEnumerable<ShoppingListElementModel> GetAll(UserGetModel model);
         ShoppingListElementModel Add(ShopingListElementAddModel model);
-        void Delete(ShoppingElementListDeleteModel model);
+        void Delete(int id);
     
     }
 
@@ -59,12 +59,11 @@ namespace FullRESTAPI.Services
             };
         }
 
-        public void Delete(ShoppingElementListDeleteModel model)
+        public void Delete(int  id)
         {
-            if (model == null)
-                throw new ArgumentException("The object entering the function is null");
+           
 
-            var shoppingElementList = _applicationDBContex.ShoppingElements.FirstOrDefault(x => x.User.ID == model.UserID && x.ID == model.ID);
+            var shoppingElementList = _applicationDBContex.ShoppingElements.FirstOrDefault(x => x.ID == id);
             
             if (shoppingElementList == null)
                 throw new ArgumentException("Can't  delete this shoppingElementList because don't exist ");

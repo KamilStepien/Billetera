@@ -35,12 +35,12 @@ namespace FullRESTAPI.Controllers
 
         }
 
-        [HttpDelete]
-        public ActionResult DeleteShoppingListElement(ShoppingElementListDeleteModel model)
+        [HttpDelete("{id}")]
+        public ActionResult DeleteShoppingListElement(int  id)
         {
             try
             {
-                _shoppingListElementService.Delete(model);
+                _shoppingListElementService.Delete(id);
                 return Ok();
             }
             catch (Exception ex)

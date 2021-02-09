@@ -10,6 +10,14 @@ export interface TransactionModel
     isExpanse:boolean
 }
 
+export interface TransactionChartData
+{
+    date:Date,
+    amountIncome:number,
+    amountExpense:number
+}
+
+
 export interface TransactionEditModel
 {
     id:number,
@@ -23,8 +31,10 @@ export interface TransactionEditModel
 export interface TransactionAddModel 
 {
     categorieId:number,
+    userId:number
     title:string,
     createDate:Date,
     amount:number,
     isExpanse:boolean
 }
+

@@ -25,22 +25,23 @@ namespace FullRESTAPI.Controllers
             _categorieService = categorieService;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<CategorieModel>> GetCategories(UserGetModel model)
+        [HttpGet("user/{userId}")]
+        public ActionResult<IEnumerable<CategorieModel>> GetCategories(int userId)
         {
-            IEnumerable<CategorieModel> categories = _categorieService.GetAll(model);
-
-            if (categories == null)
+            try
             {
-                return BadRequest(new { message = "Category element  is null or userID == 0" });
+                IEnumerable<CategorieModel> categories = _categorieService.GetAll(userId);
+                return Ok(categories);
             }
-
-            return Ok(categories);
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
 
         }
 
         [HttpPost]
-        public ActionResult<CategorieModel> AddCategory (CategorieModel model)
+        public ActionResult<CategorieModel> AddCategory(CategorieAddModel model)
         {
             try
             {
@@ -52,12 +53,12 @@ namespace FullRESTAPI.Controllers
             }
         }
 
-        [HttpDelete]
-        public ActionResult DeleteCategory(CategorieDeleteModel model)
+        [HttpDelete("{id}")]
+        public ActionResult DeleteCategory(int id)
         {
             try
             {
-                _categorieService.Delete(model);
+                _categorieService.Delete(id);
                 return Ok();
             }
             catch (Exception ex)

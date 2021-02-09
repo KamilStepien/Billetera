@@ -1,0 +1,21 @@
+.categorie-continer
+{
+    min-height:  60px;
+    border: solid rgb(206, 206, 206) 1px;
+    width: 100%;
+    border-radius: 5px;
+    margin: 7px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .transaction-delete
+    {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    
+
+}

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kCekSK2J+catFZbI01ba7hL390vhoZ/62y+zdhwegIIdtic+9vti7Uo7XQJCwSwvT9jSsf4LLKRzIb8xayLSyQ==",
+  "dgSpecHash": "+JWeWhxjRFlONilNE8D7u7ZLPTCmzyhNRi7HYdOsOgu+Sb6u2p+oapGEr5Za5oheRU8g/f6w846SOk3mTWnZ1A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Bezi\\Desktop\\inżynierkaProjekt — kopia\\FullRestApi\\API\\FullRESTAPI.csproj",
+  "projectFilePath": "C:\\Users\\Bezi\\Desktop\\Git\\Billetera\\FullRestApi\\API\\FullRESTAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bezi\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Bezi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

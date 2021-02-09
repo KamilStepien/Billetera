@@ -10,11 +10,11 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class TransactionsListComponent implements OnInit {
 
-  constructor(public service:TransactionService, public userService:UserService) { }
+  constructor(public service:TransactionService) { }
 
   ngOnInit(): void 
   {
-    this.service.getTransactions(this.userService.userlog.id)
+    this.service.getTransactions();
 
   }
 

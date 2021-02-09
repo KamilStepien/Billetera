@@ -49,12 +49,12 @@ namespace FullRESTAPI.Controllers
             }
         }
 
-        [HttpPost("deactive-notyfication")]
-        public IActionResult DeactiveNotification(DeactiveNotificationModel model)
+        [HttpPost("deactive-notyfication/{id}")]
+        public IActionResult DeactiveNotification(int id)
         {
             try
             {
-                _notificationService.DeactiveNotification(model);
+                _notificationService.DeactiveNotification(id);
                 return Ok();
             }
             catch (ArgumentException ex)
