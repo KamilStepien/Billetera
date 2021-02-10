@@ -8,7 +8,7 @@ namespace FullRESTAPI.Models.Categories
 {
     public class CategorieModel
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int UserId { get; set; }
         public string Name { get; set; }
       

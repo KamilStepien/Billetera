@@ -12,7 +12,7 @@ namespace FullRESTAPI.Services
 {
     public interface INotificationService
     {
-        public IEnumerable<NotificationModel> GetAll(UserGetModel model);
+        public IEnumerable<NotificationModel> GetAll(int id);
         public void ActiveNotyfication(ActiveNotificationModel model);
         public void DeactiveNotification(int  id);
     }
@@ -30,12 +30,12 @@ namespace FullRESTAPI.Services
             if (model == null)
                 throw new ArgumentException("The object entering the function is null");
            
-            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserID);
+            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserId);
 
             if (user == null)
                 throw new ArgumentException("User id is wrong ");
 
-            var notificationList = _applicationDBContex.NotificationLists.FirstOrDefault(x => x.ID == model.NotificationListID );
+            var notificationList = _applicationDBContex.NotificationLists.FirstOrDefault(x => x.ID == model.NotificationListId );
             
             if (notificationList == null)
                 throw new ArgumentException("The notification id don't exist ");
@@ -43,7 +43,7 @@ namespace FullRESTAPI.Services
 
             var notyfication = _applicationDBContex
                 .Notifications
-                .FirstOrDefault(x => x.User.ID == model.UserID && x.NotificationLists.ID == model.NotificationListID);
+                .FirstOrDefault(x => x.User.ID == model.UserId && x.NotificationLists.ID == model.NotificationListId);
 
             if (notyfication == null)
             {
@@ -75,16 +75,16 @@ namespace FullRESTAPI.Services
 
         }
 
-        public IEnumerable<NotificationModel> GetAll(UserGetModel model)
+        public IEnumerable<NotificationModel> GetAll(int id)
         {
-            if (model.UserID == 0)
+            if (id == 0)
                 return null;
 
             List<NotificationModel> notyfications = new List<NotificationModel>();
 
             _applicationDBContex.Notifications
                 .Include(x => x.NotificationLists)
-                .Where(y => y.User.ID == model.UserID && y.IsDisplay == true)
+                .Where(y => y.User.ID == id && y.IsDisplay == true)
                 .ToList()
                 .ForEach(x =>
                 {
@@ -92,7 +92,7 @@ namespace FullRESTAPI.Services
                     {
                         Description = x.NotificationLists.Description,
                         Title = x.NotificationLists.Title,
-                        ID = x.ID
+                        Id = x.ID
                     }) ;
                 }
                 );

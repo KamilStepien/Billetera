@@ -38,12 +38,12 @@ namespace FullRESTAPI.Services
             if (model == null)
                 throw new ArgumentException("The object entering the function is null");
 
-            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserID);
+            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserId);
 
             if (user == null)
                 throw new ArgumentException("User id is wrong ");
 
-            var categorie = _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).FirstOrDefault(z => z.ID == model.CategorieID);
+            var categorie = _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).FirstOrDefault(z => z.ID == model.CategorieId);
 
             if (categorie == null)
                 throw new ArgumentException("Categorie id is wrong ");
@@ -66,14 +66,14 @@ namespace FullRESTAPI.Services
 
             return new TransactionModel 
             { 
-                ID = transaction.ID,
+                Id = transaction.ID,
                 Amount = transaction.Amount,
                 Title = transaction.Titl,
                 CreateDate = transaction.CreateDate,
                 IsExpense = transaction.IsExpense,
                 Categorie = new CategorieForTransactionModel 
                 {
-                    ID = transaction.Categorie.ID,
+                    Id = transaction.Categorie.ID,
                     Name = transaction.Categorie.CategoriesLists.Name
                 }
             };
@@ -98,17 +98,17 @@ namespace FullRESTAPI.Services
             if (model == null)
                 throw new ArgumentException("The object entering the function is null");
 
-            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserID);
+            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserId);
 
             if (user == null)
                 throw new ArgumentException("User id is wrong ");
 
-            var categorie = _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).FirstOrDefault(z => z.ID == model.CategorieID);
+            var categorie = _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).FirstOrDefault(z => z.ID == model.CategorieId);
             
             if (categorie == null)
                 throw new ArgumentException("Categorie id is wrong ");
 
-            var transaction = _applicationDBContex.Transactions.FirstOrDefault(x => x.User.ID == model.UserID && x.ID == model.ID);
+            var transaction = _applicationDBContex.Transactions.FirstOrDefault(x => x.User.ID == model.UserId && x.ID == model.Id);
 
             if (transaction == null)
                 throw new ArgumentException("Can't  delete this trasaction because don't exist ");
@@ -124,14 +124,14 @@ namespace FullRESTAPI.Services
 
             return new TransactionModel
             {
-                ID = transaction.ID,
+                Id = transaction.ID,
                 Amount = transaction.Amount,
                 Title = transaction.Titl,
                 CreateDate = transaction.CreateDate,
                 IsExpense = transaction.IsExpense,
                 Categorie = new CategorieForTransactionModel
                 {
-                    ID = transaction.Categorie.ID,
+                    Id = transaction.Categorie.ID,
                     Name = transaction.Categorie.CategoriesLists.Name
                 }
             }; ;
@@ -156,14 +156,14 @@ namespace FullRESTAPI.Services
                     {
                         transactions.Add(new TransactionModel
                         {
-                            ID = x.ID,
+                            Id = x.ID,
                             Amount = x.Amount,
                             CreateDate = x.CreateDate,
                             IsExpense = x.IsExpense,
                             Title = x.Titl,
                             Categorie = new CategorieForTransactionModel
                             {
-                                ID = x.Categorie.ID,
+                                Id = x.Categorie.ID,
                                 Name = x.Categorie.CategoriesLists.Name
                             }
 
@@ -187,14 +187,14 @@ namespace FullRESTAPI.Services
 
             return new TransactionModel
             {
-                ID = transaction.ID,
+                Id = transaction.ID,
                 Amount = transaction.Amount,
                 CreateDate = transaction.CreateDate,
                 IsExpense = transaction.IsExpense,
                 Title = transaction.Titl,
                 Categorie = new CategorieForTransactionModel
                 {
-                    ID = transaction.Categorie.ID,
+                    Id = transaction.Categorie.ID,
                     Name = transaction.Categorie.CategoriesLists.Name
                 }
 

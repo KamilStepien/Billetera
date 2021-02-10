@@ -20,10 +20,10 @@ namespace FullRESTAPI.Controllers
             _notificationService = notificationService;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<NotificationModel>> GetNotification(UserGetModel model)
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<NotificationModel>> GetNotification(int  id)
         {
-            IEnumerable<NotificationModel> notifications = _notificationService.GetAll(model);
+            IEnumerable<NotificationModel> notifications = _notificationService.GetAll(id);
 
             if (notifications == null)
             {

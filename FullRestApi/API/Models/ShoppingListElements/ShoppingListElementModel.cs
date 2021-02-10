@@ -7,7 +7,7 @@ namespace FullRESTAPI.Models.ShoppingListElements
 {
     public class ShoppingListElementModel
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Description { get; set; }
         public int Sequence { get; set; }
     }

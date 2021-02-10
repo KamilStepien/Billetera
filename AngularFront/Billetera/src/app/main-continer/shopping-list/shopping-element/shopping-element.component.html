@@ -1,3 +1,10 @@
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div class="example-box" *ngFor="let shoppingElement of this.shoppingListService.shoppingListElements" cdkDrag>{{shoppingElement.description}}</div>
+<div cdkDropList  (cdkDropListDropped)="drop($event)">
+    <div  class="drag-and-drop-box" *ngFor="let shoppingElement of this.shoppingListService.shoppingListElements" cdkDrag>
+        <div class="shopping-element-description">
+            {{shoppingElement.description}}
+        </div>
+        <button class="transaction-delete" (click) = "delete(shoppingElement.id)">X</button>
+     
+      
+    </div>
 </div>

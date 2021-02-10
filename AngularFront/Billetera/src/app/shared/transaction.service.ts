@@ -38,18 +38,10 @@ export class TransactionService {
 
   postTransaction(model:TransactionAddModel)
   {
-    var tmp = 
-    {
-      CategorieID: Number(model.categorieId),
-      UserID:this.userService.userlog.id,
-      Title: model.title,
-      CreateDate:model.createDate,
-      Amount:model.amount,
-      IsExpense:Boolean(model.isExpanse)
-    }
+    
+    model.userId = this.userService.userlog.id;
 
-    console.log(tmp);
-    this.http.post<TransactionModel>("https://localhost:44364/transaction/", tmp).subscribe(
+    this.http.post<TransactionModel>("https://localhost:44364/transaction/", model).subscribe(
       result => 
       {
         console.log(result);
@@ -59,18 +51,10 @@ export class TransactionService {
 
   putTransaction(model:TransactionEditModel)
   {
-    var tmp = 
-    {
-      ID: model.id,
-      CategorieID: model.categorieId,
-      UserID:this.userService.userlog.id,
-      Title: model.title,
-      CreateDate:model.createDate,
-      Amount:model.amount,
-      IsExpense:model.isExpanse == true
-    }
+    
+    model.userId = this.userService.userlog.id;
 
-    this.http.put<TransactionModel>("https://localhost:44364/transaction/", tmp).subscribe(
+    this.http.put<TransactionModel>("https://localhost:44364/transaction/", model).subscribe(
       result => 
       {
         console.log(result);

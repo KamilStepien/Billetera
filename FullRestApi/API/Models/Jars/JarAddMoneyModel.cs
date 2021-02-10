@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace FullRESTAPI.Models.Jars
 {
-    public class JarEndModel
+    public class JarAddMoneyModel
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
+        public int JarId { get; set; }
+        public int Money { get; set; }
+
     }
 }

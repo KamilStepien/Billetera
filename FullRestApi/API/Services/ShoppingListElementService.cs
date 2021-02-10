@@ -37,7 +37,7 @@ namespace FullRESTAPI.Services
             if (model == null)
                 throw new ArgumentException("The object entering the function is null");
 
-            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserID);
+            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserId);
 
             if (user == null)
                 throw new ArgumentException("User id is wrong ");
@@ -56,7 +56,7 @@ namespace FullRESTAPI.Services
             { 
                 Sequence = shoppingElementList.Sequence, 
                 Description = shoppingElementList.Description, 
-                ID = shoppingElementList.ID 
+                Id = shoppingElementList.ID 
             };
         }
 
@@ -87,7 +87,7 @@ namespace FullRESTAPI.Services
                 {
                     shoppingListElements.Add(new ShoppingListElementModel
                     {
-                        ID = x.ID,
+                        Id = x.ID,
                         Description = x.Description,
                         Sequence = x.Sequence
                     }) ;
@@ -105,7 +105,7 @@ namespace FullRESTAPI.Services
             
             for(int i = 0; i< model.Length; i++)
             {
-                var shoppingElementList = _applicationDBContex.ShoppingElements.FirstOrDefault(x => x.ID == model[i].ID );
+                var shoppingElementList = _applicationDBContex.ShoppingElements.FirstOrDefault(x => x.ID == model[i].Id );
                 if (shoppingElementList == null)
                     throw new ArgumentException("Can't  delete this shoppingElementList because don't exist ");
                 shoppingElementList.Sequence = i;

@@ -20,4 +20,5 @@ export class TransactionsListElementComponent  {
         element.remove();
       })
   }
+  
 }

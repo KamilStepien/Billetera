@@ -39,6 +39,11 @@ import { ShoppingElementComponent } from './main-continer/shopping-list/shopping
 import { ShoppingElementAddComponent } from './main-continer/shopping-list/shopping-element-add/shopping-element-add.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ShoppingListService } from './shared/shopping-list.service';
+import { JarsListComponent } from './main-continer/jars/jars-list/jars-list.component';
+import { JarListElementComponent } from './main-continer/jars/jar-list-element/jar-list-element.component';
+import { AddMoneyToJarComponent } from './main-continer/jars/add-money-to-jar/add-money-to-jar.component';
+import { JarsAddEditComponent } from './main-continer/jars/jars-add-edit/jars-add-edit.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -60,6 +65,10 @@ import { ShoppingListService } from './shared/shopping-list.service';
     ShoppingListComponent,
     ShoppingElementComponent,
     ShoppingElementAddComponent,
+    JarsListComponent,
+    JarListElementComponent,
+    AddMoneyToJarComponent,
+    JarsAddEditComponent,
     
   ],
   imports: [
@@ -80,7 +89,9 @@ import { ShoppingListService } from './shared/shopping-list.service';
     MatFormFieldModule,
     MatDialogModule,
     NgPipesModule,
-    DragDropModule
+    DragDropModule,
+    MatProgressBarModule,
+    
   
   ],
   providers: [UserService,TransactionService, CategorieService, ShoppingListService],

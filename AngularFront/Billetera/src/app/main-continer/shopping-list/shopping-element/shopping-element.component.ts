@@ -19,4 +19,14 @@ export class ShoppingElementComponent implements OnInit {
     moveItemInArray(this.shoppingListService.shoppingListElements, event.previousIndex, event.currentIndex);
   }
 
+  delete( id:number)
+  {
+    this.shoppingListService.deleteShoppingListElement(id).subscribe(
+      result=> 
+      {
+        this.shoppingListService.getShoppingListElements();
+      }
+    )
+  }
+
 }

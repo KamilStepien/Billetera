@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JarService } from 'src/app/shared/jar.service';
 
 @Component({
   selector: 'app-jars',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JarsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private jarService:JarService) { }
 
   ngOnInit(): void {
+    this.jarService.getJars();
   }
 
 }

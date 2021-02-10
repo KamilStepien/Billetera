@@ -21,6 +21,7 @@ export interface TransactionChartData
 export interface TransactionEditModel
 {
     id:number,
+    userId:number,
     categorieId:number,
     title:string,
     createDate:Date,
@@ -31,7 +32,7 @@ export interface TransactionEditModel
 export interface TransactionAddModel 
 {
     categorieId:number,
-    userId:number
+    userId:number,
     title:string,
     createDate:Date,
     amount:number,

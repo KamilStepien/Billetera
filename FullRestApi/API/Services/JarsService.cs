@@ -15,10 +15,11 @@ namespace FullRESTAPI.Services
     {
         IEnumerable<JarModel> GetAll(int userId);
         JarModel GetJar(int id);
-        JarModel Add(JarAddEditModel model);
-        JarModel Edit(JarAddEditModel model);
+        JarModel Add(JarAddModel model);
+        JarModel Edit(JarEditModel model);
         void Delete(int id);
-        void EndJar(int  id);
+        void EndJar(JarEndModel  model);
+        void AddMoneyToJar(JarAddMoneyModel model);
 
 
     }
@@ -33,12 +34,12 @@ namespace FullRESTAPI.Services
             _applicationDBContex = applicationDBContex;
         }
 
-        public JarModel Add(JarAddEditModel model)
+        public JarModel Add(JarAddModel model)
         {
             if (model == null)
                 throw new ArgumentException("The object entering the function is null");
 
-            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserID);
+            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserId);
 
             if (user == null)
                 throw new ArgumentException("User id is wrong ");
@@ -48,7 +49,7 @@ namespace FullRESTAPI.Services
                 User = user,
                 Aim = model.Aim,
                 CreateDate = DateTime.Now,
-                CurrentMoney = model.CurrentMoney,
+                CurrentMoney = 0,
                 EndDate = model.EndDate,
                 Name = model.Name,
                 State = JarState.inProgress
@@ -59,7 +60,7 @@ namespace FullRESTAPI.Services
 
             return new JarModel
             {
-                ID = jar.ID,
+                Id = jar.ID,
                 State = jar.State,
                 Aim = jar.Aim,
                 CreateDate = jar.CreateDate,
@@ -83,24 +84,23 @@ namespace FullRESTAPI.Services
 
         }
 
-        public JarModel Edit(JarAddEditModel model)
+        public JarModel Edit(JarEditModel model)
         {
 
             if (model == null)
                 throw new ArgumentException("The object entering the function is null");
 
-            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserID);
+            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserId);
 
             if (user == null)
                 throw new ArgumentException("User id is wrong ");
 
-            var jar = _applicationDBContex.Jars.FirstOrDefault(x => x.User.ID == model.UserID && x.ID == model.ID);
+            var jar = _applicationDBContex.Jars.FirstOrDefault(x => x.User.ID == model.UserId && x.ID == model.Id);
 
             if (jar == null)
                 throw new ArgumentException("Can't  edit this jar because don't exist ");
 
             jar.Aim = model.Aim;
-            jar.CurrentMoney = model.CurrentMoney;
             jar.EndDate = model.EndDate;
             jar.Name = model.Name;
 
@@ -108,25 +108,28 @@ namespace FullRESTAPI.Services
 
             return new JarModel
             {
-                ID = jar.ID,
+                Id = jar.ID,
                 State = jar.State,
                 Aim = jar.Aim,
                 CreateDate = jar.CreateDate,
                 CurrentMoney = jar.CurrentMoney,
                 EndDate = jar.EndDate,
-                Name = jar.Name
+                Name = jar.Name,
+                
             };
 
         }
 
-        public void EndJar(int  id)
+        public void EndJar(JarEndModel model)
         {
-          
-
-            var jar = _applicationDBContex.Jars.FirstOrDefault(x =>  x.ID == id );
-
+           
+            var jar = _applicationDBContex.Jars.FirstOrDefault(x =>  x.ID == model.Id );
             if (jar == null)
                 throw new ArgumentException("Can't  end this jar because don't exist ");
+            
+            var user = _applicationDBContex.Users.FirstOrDefault(x => x.ID == model.UserId);
+            if (user == null)
+                throw new ArgumentException("User id is wrong ");
 
             if (jar.Aim > jar.CurrentMoney)
                 jar.State = JarState.Reached;
@@ -135,6 +138,29 @@ namespace FullRESTAPI.Services
 
             jar.EndDate = DateTime.Now;
 
+            _applicationDBContex.Transactions.Add(new EFTransaction {
+                Amount = jar.CurrentMoney,
+                IsExpense = true,
+                Titl = "Jar",
+                CreateDate = DateTime.Now,
+                User = user,
+                Categorie = _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).FirstOrDefault(z => z.CategoriesLists.ID == 1005)
+             });
+
+            _applicationDBContex.SaveChanges();
+
+        }
+
+        public void AddMoneyToJar(JarAddMoneyModel model)
+        {
+            if (model == null)
+                throw new ArgumentException("The object entering the function is null");
+
+            var jar = _applicationDBContex.Jars.FirstOrDefault(x => x.ID == model.JarId);
+            if (jar == null)
+                throw new ArgumentException("Can't  end this jar because don't exist ");
+
+            jar.CurrentMoney += model.Money;
             _applicationDBContex.SaveChanges();
 
         }
@@ -147,19 +173,20 @@ namespace FullRESTAPI.Services
             List<JarModel> jars = new List<JarModel>();
 
             _applicationDBContex.Jars
-                .Where(x => x.User.ID == userId)
+                .Where(x => x.User.ID == userId && x.State == JarState.inProgress)
                 .ToList()
                 .ForEach(x =>
                 {
                     jars.Add(new JarModel
                     {
-                        ID = x.ID,
+                        Id = x.ID,
                         Aim = x.Aim,
                         CreateDate = x.CreateDate,
                         EndDate = x.EndDate,
                         CurrentMoney = x.CurrentMoney,
                         Name = x.Name,
-                        State =x.State
+                        State =x.State,
+                        ProcentFill = (x.CurrentMoney * 100) / x.Aim
                     });
                 });
 
@@ -181,13 +208,16 @@ namespace FullRESTAPI.Services
 
             return new JarModel
             {
-                ID = jar.ID,
+                Id = jar.ID,
                 Aim = jar.Aim,
                 CreateDate = jar.CreateDate,
                 EndDate = jar.EndDate,
                 Name = jar.Name,
                 CurrentMoney = jar.CurrentMoney,
-                State = jar.State
+                State = jar.State,
+                ProcentFill = (jar.CurrentMoney*100)/jar.Aim
+
+
             };
 
 

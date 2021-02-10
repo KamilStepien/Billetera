@@ -60,7 +60,7 @@ namespace FullRESTAPI.Services
 
             return new CategorieModel
             {
-                ID = efCategorieList.ID,
+                Id = efCategorieList.ID,
                 Name = efCategorieList.Name,
                 UserId = efCategorie.User.ID
             };
@@ -96,7 +96,7 @@ namespace FullRESTAPI.Services
             _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).Where(e => e.User.ID == userId).ToList().ForEach(e =>
             categories.Add(new CategorieModel
             {
-                ID = e.ID,
+                Id = e.ID,
                 Name = e.CategoriesLists.Name,
                 UserId = e.User.ID
             })

@@ -9,7 +9,7 @@ namespace FullRESTAPI.Models.Categories
     public class CategorieForTransactionModel
     {
         [Required]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
 

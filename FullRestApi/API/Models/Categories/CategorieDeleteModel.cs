@@ -9,9 +9,9 @@ namespace FullRESTAPI.Models.Categories
     public class CategorieDeleteModel
     {
         [Required]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [Required]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
     }
 }
 

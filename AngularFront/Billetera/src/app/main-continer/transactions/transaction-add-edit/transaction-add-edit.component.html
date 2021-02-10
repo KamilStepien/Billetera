@@ -6,7 +6,7 @@
         <form [formGroup]="transaction">
             <input  type="hidden" value=0 #id formControlName="id">
             <mat-label>Categorie</mat-label>
-            <select id="cars"  formControlName="categorieId">
+            <select  formControlName="categorieId">
                 <option *ngFor="let item of categorieService.categories"   [ngValue]=item.id>{{item.name}}</option>
             </select>
             <mat-form-field class="example-full-width">

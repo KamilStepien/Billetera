@@ -9,7 +9,7 @@ namespace FullRESTAPI.Models.Transactions
 {
     public class TransactionModel
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public CategorieForTransactionModel Categorie { get; set; }
         public string Title { get; set; }
         public DateTime CreateDate { get; set; }

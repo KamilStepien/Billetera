@@ -1,0 +1,58 @@
+.jar-continer
+{
+    width: 200px;
+    height: 250px;
+    border: solid rgb(206, 206, 206) 1px;
+    border-radius: 5px;
+    margin: 15px;
+    padding: 5px 20px;
+    position: relative;
+
+    .jar-name
+    {
+        margin:5px auto 35px 10px;
+ 
+    }
+
+    .jar-current-money, .jar-goal{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .jar-edit
+    {
+        position: absolute;
+        right: 5px;
+        top:5px;
+        padding: 5px 8px;
+        border-radius: 5px;
+    }
+
+    .jar-end
+    {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .mat-progress-bar
+    {
+        height: 10px ;
+        width: 100%;
+        margin: 20px 0 ;
+        border-radius: 6px;
+    }
+
+    .jar-data
+    {
+        position: absolute;
+        color: rgb(161, 156, 156);
+        bottom: 5px;
+        right: 15px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    p {
+        color: rgb(161, 156, 156);
+    }
+}

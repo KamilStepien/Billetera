@@ -9,8 +9,8 @@ namespace FullRESTAPI.Models.Transactions
     public class TransactionDeleteModel
     {
         [Required]
-        public int ID { get; set; }
+        public int Id { get; set; }
         [Required]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
     }
 }

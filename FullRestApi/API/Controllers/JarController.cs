@@ -21,7 +21,7 @@ namespace FullRESTAPI.Controllers
             _jarService = jarService;
         }
 
-        [HttpGet("user{userId}")]
+        [HttpGet("user/{userId}")]
         public ActionResult<IEnumerable<JarModel>> GetJars(int userId)
         {
             IEnumerable<JarModel> jars = _jarService.GetAll(userId);
@@ -50,7 +50,7 @@ namespace FullRESTAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<JarModel> AddJar(JarAddEditModel model)
+        public ActionResult<JarModel> AddJar(JarAddModel model)
         {
             try
             {
@@ -62,12 +62,27 @@ namespace FullRESTAPI.Controllers
             }
         }
 
-        [HttpPost("end/{id}")]
-        public IActionResult EndJar(int id)
+        [HttpPost("end")]
+        public IActionResult EndJar(JarEndModel model)
         {
             try
             {
-                _jarService.EndJar(id);
+                _jarService.EndJar(model);
+                return Ok();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+
+        [HttpPost("add-money")]
+        public IActionResult AddMoneyToJar(JarAddMoneyModel model)
+        {
+            try
+            {
+                _jarService.AddMoneyToJar(model);
                 return Ok();
             }
             catch (ArgumentException ex)
@@ -91,7 +106,7 @@ namespace FullRESTAPI.Controllers
         }
 
         [HttpPut]
-        public ActionResult EditJar(JarAddEditModel model)
+        public ActionResult EditJar(JarEditModel model)
         {
             try
             {

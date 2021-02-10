@@ -9,8 +9,8 @@ namespace FullRESTAPI.Models.Notifications
     public class ActiveNotificationModel
     {
         [Required]
-        public int NotificationListID { get; set; }
+        public int NotificationListId { get; set; }
         [Required]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
     }
 }

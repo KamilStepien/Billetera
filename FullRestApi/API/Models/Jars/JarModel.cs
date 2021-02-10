@@ -8,12 +8,13 @@ namespace FullRESTAPI.Models.Jars
 {
     public class JarModel
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime EndDate { get; set; }
         public int CurrentMoney { get; set; }
         public int Aim { get; set; }
+        public int ProcentFill { get; set; }
         public JarState State { get; set; }
     }
 }

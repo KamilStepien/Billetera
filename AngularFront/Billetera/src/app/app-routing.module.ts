@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { CategoriesAddComponent } from './main-continer/categories/categories-add/categories-add.component';
 import { CategoriesComponent } from './main-continer/categories/categories.component';
 import { DataboardComponent } from './main-continer/databoard/databoard.component';
+import { JarsAddEditComponent } from './main-continer/jars/jars-add-edit/jars-add-edit.component';
 import { JarsComponent } from './main-continer/jars/jars.component';
 import { ShoppingListComponent } from './main-continer/shopping-list/shopping-list.component';
 import { TransactionAddEditComponent } from './main-continer/transactions/transaction-add-edit/transaction-add-edit.component';
@@ -24,7 +25,9 @@ const routes: Routes = [
   { path: 'transaction/categorie', component: CategoriesComponent},
   { path: 'transaction/categorie/add', component: CategoriesAddComponent},
   { path: 'dashboard', component: DataboardComponent},
-  { path: 'shoppingList', component: ShoppingListComponent}
+  { path: 'shoppingList', component: ShoppingListComponent},
+  { path: 'jar/add', component: JarsAddEditComponent},
+  { path: 'jar/edit/:id', component: JarsAddEditComponent}
 
 
 ]

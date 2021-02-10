@@ -1,0 +1,9 @@
+<div class="jar-continer"  >
+   <div class="jar-name" >{{jarInput?.name}}</div>
+   <div class="jar-current-money" ><span>Current money</span> <p>{{jarInput?.currentMoney| currency}}</p> </div>
+   <div class="jar-goal" ><span>Goal</span> <p>{{jarInput?.aim | currency}}</p> </div>
+   <button class="jar-edit"  [routerLink]="['/jar/edit/',jarInput?.id]">Edit </button>
+   <mat-progress-bar mode="determinate" [value]="jarInput?.procentFill"></mat-progress-bar> 
+   <button class="jar-end" (click)="jarEnd(jarInput.id)"  >End </button>
+   <div class="jar-data">{{jarInput?.endDate | date}}</div>
+</div>

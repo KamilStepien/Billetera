@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace FullRESTAPI.Models.Jars
 {
-    public class JarAddEditModel
+    public class JarEditModel
     {
-        public int ID { get; set; }
-        public int UserID { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public DateTime EndDate { get; set; }
-        public int CurrentMoney { get; set; }
         public int Aim { get; set; }
     }
 }

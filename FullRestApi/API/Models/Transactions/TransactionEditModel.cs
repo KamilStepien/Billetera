@@ -7,9 +7,9 @@ namespace FullRESTAPI.Models.Transactions
 {
     public class TransactionEditModel
     {
-        public int ID { get; set; }
-        public int  CategorieID { get; set; }
-        public int UserID { get; set; }
+        public int Id { get; set; }
+        public int  CategorieId { get; set; }
+        public int UserId { get; set; }
         public string Title { get; set; }
         public DateTime CreateDate { get; set; }
         public int Amount { get; set; }
