@@ -34,6 +34,12 @@ import { TransactionAddEditComponent } from './main-continer/transactions/transa
 import * as echarts from 'echarts';
 import { NgxEchartsModule } from 'ngx-echarts';
 import {NgPipesModule} from 'ngx-pipes';
+import { ShoppingListComponent } from './main-continer/shopping-list/shopping-list.component';
+import { ShoppingElementComponent } from './main-continer/shopping-list/shopping-element/shopping-element.component';
+import { ShoppingElementAddComponent } from './main-continer/shopping-list/shopping-element-add/shopping-element-add.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ShoppingListService } from './shared/shopping-list.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +57,9 @@ import {NgPipesModule} from 'ngx-pipes';
     CategorieListComponent,
     CategoriesAddComponent,
     TransactionAddEditComponent,
+    ShoppingListComponent,
+    ShoppingElementComponent,
+    ShoppingElementAddComponent,
     
   ],
   imports: [
@@ -70,10 +79,11 @@ import {NgPipesModule} from 'ngx-pipes';
     MatButtonToggleModule,
     MatFormFieldModule,
     MatDialogModule,
-    NgPipesModule
+    NgPipesModule,
+    DragDropModule
   
   ],
-  providers: [UserService,TransactionService, CategorieService],
+  providers: [UserService,TransactionService, CategorieService, ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

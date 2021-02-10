@@ -5,6 +5,7 @@ import { CategoriesAddComponent } from './main-continer/categories/categories-ad
 import { CategoriesComponent } from './main-continer/categories/categories.component';
 import { DataboardComponent } from './main-continer/databoard/databoard.component';
 import { JarsComponent } from './main-continer/jars/jars.component';
+import { ShoppingListComponent } from './main-continer/shopping-list/shopping-list.component';
 import { TransactionAddEditComponent } from './main-continer/transactions/transaction-add-edit/transaction-add-edit.component';
 
 import { TransactionsComponent } from './main-continer/transactions/transactions.component';
@@ -22,7 +23,10 @@ const routes: Routes = [
   { path: 'transaction/edit/:id', component: TransactionAddEditComponent},
   { path: 'transaction/categorie', component: CategoriesComponent},
   { path: 'transaction/categorie/add', component: CategoriesAddComponent},
-  { path: 'dashboard', component: DataboardComponent}
+  { path: 'dashboard', component: DataboardComponent},
+  { path: 'shoppingList', component: ShoppingListComponent}
+
+
 ]
 
 @NgModule({

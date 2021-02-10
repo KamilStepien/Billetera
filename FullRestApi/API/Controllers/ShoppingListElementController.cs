@@ -20,10 +20,10 @@ namespace FullRESTAPI.Controllers
             _shoppingListElementService = shoppingListElementService;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<ShoppingListElementModel>> GetShoppingListElement(UserGetModel model)
+        [HttpGet("user/{userId}")]
+        public ActionResult<IEnumerable<ShoppingListElementModel>> GetShoppingListElement(int userId)
         {
-            IEnumerable<ShoppingListElementModel> shoppingListElements = _shoppingListElementService.GetAll(model);
+            IEnumerable<ShoppingListElementModel> shoppingListElements = _shoppingListElementService.GetAll(userId);
 
             if (shoppingListElements == null)
             {
@@ -55,6 +55,20 @@ namespace FullRESTAPI.Controllers
             try
             {
                 return Ok(_shoppingListElementService.Add(model));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [HttpPut("setSequence")]
+        public ActionResult<ShoppingListElementModel> SetSequence (ShoppingListElementModel [] model)
+        {
+            try
+            {
+                _shoppingListElementService.SetSequence(model);
+                return Ok();
             }
             catch (Exception ex)
             {

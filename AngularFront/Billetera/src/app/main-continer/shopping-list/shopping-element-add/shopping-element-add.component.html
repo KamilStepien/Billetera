@@ -1,0 +1,12 @@
+
+<form [formGroup]="shoppingElement">
+    <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput placeholder="name" formControlName="description">
+    </mat-form-field>
+    <div class="form-group">
+        <button mat-raised-button type="submit" (click)="submit()" [disabled]="shoppingElement.invalid">
+            Add
+        </button>
+    </div>
+</form>

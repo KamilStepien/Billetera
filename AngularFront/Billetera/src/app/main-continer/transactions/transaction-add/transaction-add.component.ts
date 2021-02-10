@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TransactionService } from 'src/app/shared/transaction.service';
-import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-transaction-add',
@@ -27,7 +26,7 @@ export class TransactionAddComponent {
 
   submit()
   {
-    this.transactionService.getPost(this.addTransaction.value);
+    this.transactionService.postTransaction(this.addTransaction.value);
   }
 
 }

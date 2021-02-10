@@ -1,0 +1,3 @@
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let shoppingElement of this.shoppingListService.shoppingListElements" cdkDrag>{{shoppingElement.description}}</div>
+</div>

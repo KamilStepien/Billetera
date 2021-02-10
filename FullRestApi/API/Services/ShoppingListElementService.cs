@@ -12,9 +12,10 @@ namespace FullRESTAPI.Services
 
     public interface IShoppingListElementService
     {
-        IEnumerable<ShoppingListElementModel> GetAll(UserGetModel model);
+        IEnumerable<ShoppingListElementModel> GetAll(int userId);
         ShoppingListElementModel Add(ShopingListElementAddModel model);
         void Delete(int id);
+        void SetSequence(ShoppingListElementModel[] model);
     
     }
 
@@ -61,8 +62,6 @@ namespace FullRESTAPI.Services
 
         public void Delete(int  id)
         {
-           
-
             var shoppingElementList = _applicationDBContex.ShoppingElements.FirstOrDefault(x => x.ID == id);
             
             if (shoppingElementList == null)
@@ -73,15 +72,16 @@ namespace FullRESTAPI.Services
 
         }
 
-        public IEnumerable<ShoppingListElementModel> GetAll(UserGetModel model)
+        public IEnumerable<ShoppingListElementModel> GetAll(int  userId)
         {
-            if (model.UserID == 0)
+            if (userId == 0)
                 return null;
 
             List<ShoppingListElementModel> shoppingListElements = new List<ShoppingListElementModel>();
 
             _applicationDBContex.ShoppingElements
-                .Where(x => x.User.ID == model.UserID)
+                .Where(x => x.User.ID == userId)
+                .OrderBy(x=> x.Sequence)
                 .ToList()
                 .ForEach(x =>
                 {
@@ -96,6 +96,21 @@ namespace FullRESTAPI.Services
 
             return shoppingListElements;
 
+        }
+
+        public void SetSequence(ShoppingListElementModel[] model)
+        {
+            if (model == null)
+                throw new ArgumentException("The object entering the function is null");
+            
+            for(int i = 0; i< model.Length; i++)
+            {
+                var shoppingElementList = _applicationDBContex.ShoppingElements.FirstOrDefault(x => x.ID == model[i].ID );
+                if (shoppingElementList == null)
+                    throw new ArgumentException("Can't  delete this shoppingElementList because don't exist ");
+                shoppingElementList.Sequence = i;
+            }
+            _applicationDBContex.SaveChanges();
         }
     }
 }

@@ -1,4 +1,14 @@
 .demo-chart
 {
-    width: 600px;
+    width: 100%;
+}
+:host
+{
+    padding: 40px;
+    width: 100%;
+   
+    mat-card
+    {
+        height: 100%;
+    }
 }
