@@ -93,7 +93,7 @@ namespace FullRESTAPI.Services
 
             List<CategorieModel> categories = new List<CategorieModel>();
 
-            _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).Where(e => e.User.ID == userId).ToList().ForEach(e =>
+            _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).Where(e => e.User.ID == userId && e.CategoriesLists.ID != 1).ToList().ForEach(e =>
             categories.Add(new CategorieModel
             {
                 Id = e.ID,

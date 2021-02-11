@@ -140,11 +140,11 @@ namespace FullRESTAPI.Services
 
             _applicationDBContex.Transactions.Add(new EFTransaction {
                 Amount = jar.CurrentMoney,
-                IsExpense = true,
+                IsExpense = false,
                 Titl = "Jar",
                 CreateDate = DateTime.Now,
                 User = user,
-                Categorie = _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).FirstOrDefault(z => z.CategoriesLists.ID == 1005)
+                Categorie = _applicationDBContex.Categories.Include(x => x.User).Include(y => y.CategoriesLists).FirstOrDefault(z => z.CategoriesLists.ID==1)
              });
 
             _applicationDBContex.SaveChanges();

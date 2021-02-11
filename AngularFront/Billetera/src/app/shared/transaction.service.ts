@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TransferState } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { TransactionAddModel, TransactionChartData, TransactionEditModel, TransactionModel } from './transactions.model';
+import { TransactionAddModel, TransactionChartData, TransactionEditModel, TransactionModel, TransactionSearchModel } from './transactions.model';
 import { UserService } from './user.service';
 
 
@@ -11,16 +11,33 @@ import { UserService } from './user.service';
 })
 export class TransactionService {
 
-  transactions:TransactionModel[] = [];
- 
+  transactions:TransactionModel[] = [] ;
+  transactionsCopy:TransactionModel[] = [] ;
 
   constructor(private http:HttpClient,  private userService: UserService) { }
 
 
+
+  sortTransaction(model:TransactionSearchModel)
+  {
+    let newTransactions: TransactionModel[] = []
+    this.transactionsCopy.forEach(x=>{
+      if((model.minMoney<= x.amount && model.maxMoney >= x.amount && model.categorieId == x.categorie.id ))
+      newTransactions.push(x);
+    })
+
+    this.transactions = newTransactions;
+  }
+
   getTransactions()
   {
     this.http.get<TransactionModel[]>("https://localhost:44364/transaction/user/" + this.userService.userlog.id ).subscribe(
-      data => this.transactions = data
+      data => 
+      {
+        this.transactions = data;
+        this.transactionsCopy = data;
+      }
+      
     );
    
   }
@@ -39,27 +56,34 @@ export class TransactionService {
   postTransaction(model:TransactionAddModel)
   {
     
-    model.userId = this.userService.userlog.id;
+    let tmp = 
+    {
+      amount: model.amount,
+      categorieId: model.categorieId,
+      createDate: model.createDate,
+      isExpense: Boolean(model.isExpense == "true")  ,
+      title: model.title,
+      userId : this.userService.userlog.id
 
-    this.http.post<TransactionModel>("https://localhost:44364/transaction/", model).subscribe(
-      result => 
-      {
-        console.log(result);
-      }
-    );
+    }
+
+    this.http.post<TransactionModel>("https://localhost:44364/transaction/", tmp).subscribe();
   }
 
   putTransaction(model:TransactionEditModel)
   {
-    
-    model.userId = this.userService.userlog.id;
+    let tmp = 
+    {
+      id:model.id,
+      amount: model.amount,
+      categorieId: model.categorieId,
+      createDate: model.createDate,
+      isExpense: Boolean(model.isExpense == "true")  ,
+      title: model.title,
+      userId : this.userService.userlog.id
 
-    this.http.put<TransactionModel>("https://localhost:44364/transaction/", model).subscribe(
-      result => 
-      {
-        console.log(result);
-      }
-    );
+    }
+    this.http.put<TransactionModel>("https://localhost:44364/transaction/", tmp).subscribe();
   }
   
 

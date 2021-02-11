@@ -1,17 +1,17 @@
-export interface CategorieForTransactionModel
+export class CategorieForTransactionModel
 {
-    id:number,
-    name:string
+    id:number;
+    name:string;
 }
 
-export interface CategorieModel
+export class CategorieModel
 {
-    id:number,
-    userId:number,
-    name:string
+    id:number;
+    userId:number;
+    name:string;
 }
 
 export interface CategorieAddModel
 {
-    name:string
+    name:string;
 }

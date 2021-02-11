@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {  Router } from '@angular/router';
 import { TransactionService } from './shared/transaction.service';
 import { UserService } from './shared/user.service';
 
@@ -10,5 +11,15 @@ import { UserService } from './shared/user.service';
 })
 export class AppComponent 
 {
-  constructor(public service:UserService){}; 
+  constructor(private router:Router, public service:UserService){}; 
+
+
+  logOut()
+  {
+    this.service.logOut();
+    this.router.navigate(["authenticate"]);
+  }
+
+
 }
+

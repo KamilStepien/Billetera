@@ -10,6 +10,7 @@ import { ShoppingListComponent } from './main-continer/shopping-list/shopping-li
 import { TransactionAddEditComponent } from './main-continer/transactions/transaction-add-edit/transaction-add-edit.component';
 
 import { TransactionsComponent } from './main-continer/transactions/transactions.component';
+import { AuthGuardService } from './shared/auth-guard-service.service';
 import { StartPageComponent } from './start-page/start-page.component';
 import { UserAuthenticateComponent } from './user-authenticate/user-authenticate.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
@@ -18,16 +19,16 @@ const routes: Routes = [
   { path: '', component: StartPageComponent },
   { path: 'authenticate', component: UserAuthenticateComponent },
   { path: 'register', component: UserRegisterComponent},
-  { path: 'transaction', component: TransactionsComponent},
-  { path: 'jar', component: JarsComponent},
-  { path: 'transaction/add', component: TransactionAddEditComponent},
-  { path: 'transaction/edit/:id', component: TransactionAddEditComponent},
-  { path: 'transaction/categorie', component: CategoriesComponent},
-  { path: 'transaction/categorie/add', component: CategoriesAddComponent},
-  { path: 'dashboard', component: DataboardComponent},
-  { path: 'shoppingList', component: ShoppingListComponent},
-  { path: 'jar/add', component: JarsAddEditComponent},
-  { path: 'jar/edit/:id', component: JarsAddEditComponent}
+  { path: 'transaction', component: TransactionsComponent, canActivate : [AuthGuardService] },
+  { path: 'jar', component: JarsComponent, canActivate : [AuthGuardService]},
+  { path: 'transaction/add', component: TransactionAddEditComponent, canActivate : [AuthGuardService]},
+  { path: 'transaction/edit/:id', component: TransactionAddEditComponent, canActivate : [AuthGuardService]},
+  { path: 'transaction/categorie', component: CategoriesComponent, canActivate : [AuthGuardService]},
+  { path: 'transaction/categorie/add', component: CategoriesAddComponent, canActivate : [AuthGuardService]},
+  { path: 'dashboard', component: DataboardComponent, canActivate : [AuthGuardService]},
+  { path: 'shoppingList', component: ShoppingListComponent, canActivate : [AuthGuardService]},
+  { path: 'jar/add', component: JarsAddEditComponent, canActivate : [AuthGuardService]},
+  { path: 'jar/edit/:id', component: JarsAddEditComponent, canActivate : [AuthGuardService]}
 
 
 ]

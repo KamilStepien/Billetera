@@ -19,7 +19,7 @@ export class TransactionAddEditComponent implements OnInit {
     title: new FormControl('',[Validators.required]),
     amount: new FormControl('',[Validators.required]),
     createDate: new FormControl('',[Validators.required]),
-    isExpanse: new FormControl('',[Validators.required])
+    isExpense: new FormControl('',[Validators.required])
   }
   )
 
@@ -27,12 +27,11 @@ export class TransactionAddEditComponent implements OnInit {
 
   constructor(private transactionService:TransactionService, private route: ActivatedRoute, public categorieService : CategorieService) { 
     this.route.params.subscribe(param => this.transactionId = param?.id);
-    console.log(this.transactionId);
     if(this.transactionId != undefined)
     {
       this.transactionService.getTransaction(this.transactionId).subscribe(result => 
       {
-        this.transaction.setValue({id: result.id, categorieId: result.categorie.id , title:result.title , amount: result.amount, createDate: result.createDate.toString().slice(0, 10), isExpanse: result.isExpanse==true});
+        this.transaction.setValue({id: result.id, categorieId: result.categorie.id , title:result.title , amount: result.amount, createDate: result.createDate.toString().slice(0, 10), isExpense: result.isExpense==true});
       })
     }
   }
@@ -40,7 +39,6 @@ export class TransactionAddEditComponent implements OnInit {
   
   ngOnInit(): void {
     this.categorieService.getCategories();
-    console.log(this.categorieService.categories);
   }
 
 

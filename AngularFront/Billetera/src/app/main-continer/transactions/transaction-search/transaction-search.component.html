@@ -1,0 +1,18 @@
+<form class="form-transaction-search"  [formGroup]="transactionSearch">
+    <p>Price</p>
+
+        <input class="form-field" type="number" matInput  formControlName="minMoney">
+ 
+    <p>to</p>
+    
+        <input class="form-field" type="number" matInput  formControlName="maxMoney">
+  
+    <select class="form-field" formControlName="categorieId">
+        <option *ngFor="let item of categorieService.categories"   [ngValue]=item.id>{{item.name}}</option>
+    </select>
+    <div class="form-group" class="form-field">
+        <button class= "transaction-search-button" mat-raised-button type="submit" (click)="submit()" [disabled]="transactionSearch.invalid">
+            Search
+        </button>
+    </div>
+</form>

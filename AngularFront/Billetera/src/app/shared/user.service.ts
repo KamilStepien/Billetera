@@ -8,13 +8,17 @@ import { Router } from '@angular/router';
 })
 export class UserService {
 
-  public userlog: UserModule ;
-  
+  public userlog: UserModule;
+  public IsLogUser: boolean = false;
   errormessage:string = "";
   
   
   constructor(private http:HttpClient,private router:Router ) { }
 
+  logOut()
+  {
+    this.IsLogUser = false;
+  }
   
   register(model:UserRegisterModel) 
   {
@@ -33,6 +37,7 @@ export class UserService {
         this.errormessage = "";
         this.router.navigate(['/transaction']);
         this.userlog = result;
+        this.IsLogUser = true;
       },
       error => this.errormessage = error.error.message
     )

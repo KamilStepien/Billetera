@@ -44,6 +44,12 @@ import { JarListElementComponent } from './main-continer/jars/jar-list-element/j
 import { AddMoneyToJarComponent } from './main-continer/jars/add-money-to-jar/add-money-to-jar.component';
 import { JarsAddEditComponent } from './main-continer/jars/jars-add-edit/jars-add-edit.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { NotificationListComponent } from './main-continer/notifications/notification-list/notification-list.component';
+import { NotificationListElementComponent } from './main-continer/notifications/notification-list-element/notification-list-element.component';
+import { BilansComponent } from './main-continer/databoard/bilans/bilans.component';
+import { JarService } from './shared/jar.service';
+import { AuthGuardService } from './shared/auth-guard-service.service';
+import { TransactionSearchComponent } from './main-continer/transactions/transaction-search/transaction-search.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +75,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     JarListElementComponent,
     AddMoneyToJarComponent,
     JarsAddEditComponent,
+    NotificationListComponent,
+    NotificationListElementComponent,
+    BilansComponent,
+    TransactionSearchComponent,
     
   ],
   imports: [
@@ -94,7 +104,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     
   
   ],
-  providers: [UserService,TransactionService, CategorieService, ShoppingListService],
+  providers: [UserService,TransactionService, CategorieService, ShoppingListService,JarService,AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

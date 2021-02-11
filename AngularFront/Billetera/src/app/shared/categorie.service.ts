@@ -21,7 +21,7 @@ export class CategorieService {
     var tmp = 
     {
       Name: model.name,
-      UserID:this.userService.userlog.id,
+      UserID:this.userService.userlog?.id,
      
     }
     console.log(tmp);

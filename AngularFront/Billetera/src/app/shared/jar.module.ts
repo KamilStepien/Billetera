@@ -4,44 +4,44 @@ enum JarState {
     inProgress
 }
 
-export interface JarModel {
-    id: number,
-    name: string,
-    createDate: Date,
-    endDate: Date,
-    currentMoney:number
-    aim: number,
-    procentFill:number,
-    state: JarState
+export class JarModel {
+    id: number;
+    name: string;
+    createDate: Date;
+    endDate: Date;
+    currentMoney:number;
+    aim: number;
+    procentFill:number;
+    state: JarState;
 }
 
-export interface JarEditModel
+export class JarEditModel
 {
-    id: number,
-    userId:number,
-    name: string,
-    endDate: Date,
-    aim: number,
-    state: JarState
+    id: number;
+    userId:number;
+    name: string;
+    endDate: Date;
+    aim: number;
+    state: JarState;
 }
 
-export interface JarAddModel
+export class JarAddModel
 {
-    userId:number,
-    name: string,
-    endDate: Date,
-    aim: number,
-    state: JarState
+    userId:number;
+    name: string;
+    endDate: Date;
+    aim: number;
+    state: JarState;
 }
 
-export interface JarAddMoneyModel
+export class JarAddMoneyModel
 {
-    jarId:number,
-    money:number
+    jarId:number;
+    money:number;
 }
 
-export interface JarEndModel
+export class JarEndModel
 {
-    id:number,
-    userId:number
+    id:number;
+    userId:number;
 }

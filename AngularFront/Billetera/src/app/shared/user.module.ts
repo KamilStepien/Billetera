@@ -1,4 +1,4 @@
-export interface UserModule
+export class UserModule
 {
     id:number;
     email:string;
@@ -10,7 +10,7 @@ export interface UserModule
 
 
 
-export interface UserRegisterModel
+export class UserRegisterModel
 {
     email:string;
     password:string;
@@ -18,7 +18,7 @@ export interface UserRegisterModel
     lastName:string;
 }
 
-export interface UserAuthenticateModel
+export class UserAuthenticateModel
 {
     email:string;
     password:string;

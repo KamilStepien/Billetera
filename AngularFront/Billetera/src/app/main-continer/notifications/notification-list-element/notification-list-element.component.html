@@ -1,0 +1,6 @@
+<div class="notification-continer"  #element >
+    <div class="notification-name" >{{notificationInput?.title}} </div>
+    <div class="notification-category" >{{notificationInput?.description}}</div>
+    <button class="notification-delete" (click) = "closeNotification(element,notificationInput.id)">X</button>
+
+</div>

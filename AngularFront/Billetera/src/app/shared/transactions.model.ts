@@ -1,41 +1,49 @@
 import { CategorieForTransactionModel } from "./categories.module";
 
-export interface TransactionModel
+export class TransactionModel
 {
-    id:number,
-    categorie: CategorieForTransactionModel,
-    title:string,
-    createDate:Date,
-    amount:number,
-    isExpanse:boolean
+    id:number;
+    categorie: CategorieForTransactionModel;
+    title:string;
+    createDate:Date;
+    amount:number;
+    isExpense:boolean;
 }
 
-export interface TransactionChartData
+export class TransactionChartData
 {
-    date:Date,
-    amountIncome:number,
-    amountExpense:number
+    date:Date;
+    amountIncome:number;
+    amountExpense:number;
 }
 
 
-export interface TransactionEditModel
+export class TransactionEditModel
 {
-    id:number,
-    userId:number,
-    categorieId:number,
-    title:string,
-    createDate:Date,
-    amount:number,
-    isExpanse:boolean
+    id:number;
+    userId:number;
+    categorieId:number;
+    title:string;
+    createDate:Date;
+    amount:number;
+    isExpense:string;
 }
 
-export interface TransactionAddModel 
+export class TransactionAddModel 
 {
-    categorieId:number,
-    userId:number,
-    title:string,
-    createDate:Date,
-    amount:number,
-    isExpanse:boolean
+    categorieId:number;
+    userId:number;
+    title:string;
+    createDate:Date;
+    amount:number;
+    isExpense:string;
+}
+
+
+export class TransactionSearchModel
+{
+    minMoney: number;
+    maxMoney: number;
+    categorieId: number;
 }
 

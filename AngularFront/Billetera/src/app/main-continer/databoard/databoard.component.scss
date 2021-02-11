@@ -1,5 +1,6 @@
 .demo-chart
 {
+    margin-top: 40px;
     width: 100%;
 }
 :host
@@ -11,4 +12,11 @@
     {
         height: 100%;
     }
+}
+
+app-notification-list, app-bilans
+{
+    display: flex;
+    padding-left: 20%;
+    padding-right: 20%;
 }
