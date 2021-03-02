@@ -12,8 +12,8 @@ import { TransactionModel } from 'src/app/shared/transactions.model';
 export class TransactionSearchComponent implements OnInit {
 
   transactionSearch = new FormGroup({
-    minMoney: new FormControl('',[Validators.required]),
-    maxMoney: new FormControl('',[Validators.required]),
+    minMoney: new FormControl('',[Validators.required, Validators.min(0)]),
+    maxMoney: new FormControl('',[Validators.required, Validators.min(0)]),
     categorieId: new FormControl('',[Validators.required]),
 
   })

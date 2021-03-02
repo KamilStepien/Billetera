@@ -8,8 +8,6 @@ export class UserModule
     token:string;
 }
 
-
-
 export class UserRegisterModel
 {
     email:string;
@@ -22,4 +20,14 @@ export class UserAuthenticateModel
 {
     email:string;
     password:string;
+}
+
+export class UserEditModule
+{
+    id:number;
+    actuallPassword:string;
+    newPassword:string;
+    firstName:string;
+    lastName:string;
+    avatarLink:string;
 }

@@ -5,9 +5,3 @@ export class NotificationModel
     description:string;
 }
 
-
-export class ActiveNotificationModel
-{
-    notificationListId:number;
-    userId:number;
-}

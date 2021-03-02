@@ -1,0 +1,42 @@
+
+    <div class="form-continer">
+        <mat-card-header>
+            <H2>User</H2>
+        </mat-card-header>
+        <h3>{{userService.errormessage}}</h3>
+        <form [formGroup]="user">
+            <input type="text" matInput placeholder="Password" formControlName="actuallPassword">
+            <input type="text" matInput placeholder="New Password" formControlName="newpassword">
+            <input type="text" matInput placeholder="First name" formControlName="firstName">
+           <input type="text" matInput placeholder="Last name" formControlName="lastName">
+          
+           <div class="avatar-image-box">
+            <label>
+                <input type="radio" value="../../../../assets/images/Avatars/1.jpg" formControlName="avatarLink" checked>
+                <img src="../../../../assets/images/Avatars/1.jpg">
+              </label>
+              <label>
+                <input type="radio" value="../../../../assets/images/Avatars/2.jpg" formControlName="avatarLink" checked>
+                <img src="../../../../assets/images/Avatars/2.jpg">
+              </label>
+              <label>
+                <input type="radio" value="../../../../assets/images/Avatars/3.jpg" formControlName="avatarLink" checked>
+                <img src="../../../../assets/images/Avatars/3.jpg">
+              </label>
+              <label>
+                <input type="radio" value="../../../../assets/images/Avatars/4.jpg" formControlName="avatarLink">
+                <img src="../../../../assets/images/Avatars/4.jpg">
+              </label>
+           </div>
+          
+     
+            <div class="form-group">
+                <button mat-raised-button type="submit" (click) = "submit()" [disabled]="user.invalid">
+                    Save
+                </button>
+
+            </div>
+          
+        </form>
+
+    </div>

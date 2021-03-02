@@ -12,7 +12,7 @@ export class AddMoneyToJarComponent implements OnInit {
 
   addMoneyToJar = new FormGroup(
     {
-      money: new FormControl('',[Validators.required]),
+      money: new FormControl('',[Validators.required, Validators.min(0)]),
       jarId: new FormControl('',[Validators.required])
     }
   )

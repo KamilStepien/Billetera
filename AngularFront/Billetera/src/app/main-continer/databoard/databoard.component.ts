@@ -24,7 +24,6 @@ export class DataboardComponent implements OnInit {
       data => 
       {
         this.transactionChartData = data;
-        console.log(this.transactionChartData);
         this.setChart();
       }
     );

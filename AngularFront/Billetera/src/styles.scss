@@ -21,6 +21,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     {
         color:  rgb(230, 32, 32);
         margin: 20px 0 ;
+        font-weight: 600;
     }
     
     form
@@ -28,12 +29,35 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
 
-        button 
+       
+
+        input,select{
+          
+            border: solid 1px rgb(129, 126, 126);
+           
+            border-radius: 5px;
+        }
+
+        input,select,button,option
         {
-            margin-top: 10px;
+            text-align: center;
             width: 100%;
+            margin: 10px 20px;
+               
+        }
+
+        input,select,option
+        {
+            padding: 10px 0;
+        }
+        
+        select 
+        {
+            text-align-last:center;
         }
     }
 
 }
+

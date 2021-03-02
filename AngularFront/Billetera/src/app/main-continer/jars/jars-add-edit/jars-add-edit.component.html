@@ -5,31 +5,20 @@
         </mat-card-header>
         <form [formGroup]="jar">
             <input  type="hidden" value=0 #id formControlName="id">
-            <mat-form-field class="example-full-width">
-                <mat-label>Name</mat-label>
+        
                 <input type="text" matInput placeholder="name" formControlName="name">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>End date</mat-label>
                 <input type="date" matInput placeholder="End date" formControlName="endDate">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Aim</mat-label>
                 <input type="number" matInput placeholder="Aim" formControlName="aim">
-            </mat-form-field>
-
-            <div class="form-group">
+        
                 <button mat-raised-button type="submit" (click)="submit(id.value)" [disabled]="jar.invalid">
                     Save
                 </button>
 
-            </div>
-            <div class="form-group">
                 <button mat-raised-button type="submit" [routerLink]="['/jar']">
                     Back
                 </button>
 
-            </div>
+            
         </form>
 
     </div>

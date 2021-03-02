@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TransferState } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TransactionAddModel, TransactionChartData, TransactionEditModel, TransactionModel, TransactionSearchModel } from './transactions.model';
 import { UserService } from './user.service';
@@ -14,7 +15,7 @@ export class TransactionService {
   transactions:TransactionModel[] = [] ;
   transactionsCopy:TransactionModel[] = [] ;
 
-  constructor(private http:HttpClient,  private userService: UserService) { }
+  constructor(private http:HttpClient,private router:Router,  private userService: UserService) { }
 
 
 
@@ -67,7 +68,12 @@ export class TransactionService {
 
     }
 
-    this.http.post<TransactionModel>("https://localhost:44364/transaction/", tmp).subscribe();
+    this.http.post<TransactionModel>("https://localhost:44364/transaction/", tmp).subscribe(
+      result => 
+      {
+        this.router.navigate(["transaction"]);
+      }
+    );
   }
 
   putTransaction(model:TransactionEditModel)
@@ -83,7 +89,13 @@ export class TransactionService {
       userId : this.userService.userlog.id
 
     }
-    this.http.put<TransactionModel>("https://localhost:44364/transaction/", tmp).subscribe();
+    this.http.put<TransactionModel>("https://localhost:44364/transaction/", tmp).subscribe(
+      result => 
+      {
+        this.router.navigate(["transaction"]);
+      }
+    
+    );
   }
   
 

@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CategorieAddModel, CategorieModel } from './categories.module';
 import { UserService } from './user.service';
@@ -10,7 +11,7 @@ import { UserService } from './user.service';
 })
 export class CategorieService {
 
-  constructor(private http:HttpClient,  private userService: UserService) { }
+  constructor(private http:HttpClient, public router:Router,  private userService: UserService) { }
 
   categories:CategorieModel[];
 
@@ -28,8 +29,7 @@ export class CategorieService {
     this.http.post<CategorieModel>("https://localhost:44364/categorie/", tmp).subscribe(
       result => 
       {
-        console.log(result);
-        
+        this.router.navigate(["transaction/categorie"]);
       }
     );
   }

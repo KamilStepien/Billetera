@@ -17,7 +17,7 @@ export class JarsAddEditComponent implements OnInit {
       id: new FormControl(''),
       name: new FormControl('',[Validators.required]),
       endDate: new FormControl('',[Validators.required]),
-      aim: new FormControl('',[Validators.required]),
+      aim: new FormControl('',[Validators.required, Validators.min(0)]),
     }
   );
 

@@ -40,7 +40,8 @@ namespace FullRESTAPI.Services
 
             var user = _applicationDBContex.Users.SingleOrDefault(x => x.Email == email);
 
-            if (user == null)
+
+            if (user == null || user.Password != password)
                 return null;
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -73,11 +74,19 @@ namespace FullRESTAPI.Services
 
             EmailValidation(user.Email);
             PasswordValidation(password);
-
-            _applicationDBContex.Users.Add(new EFUser { Email = user.Email, FirstName = user.FirstName , LastName = user.LastName, Password = password });
+            var efUser = new EFUser { Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, Password = password, AvatarLink = "../../../../assets/images/Avatars/1.jpg" };
+            _applicationDBContex.Users.Add(efUser);
             _applicationDBContex.SaveChanges();
 
-            return user;
+            return new UserModel
+            {
+                Id = efUser.ID,
+                AvatarLink = efUser.AvatarLink,
+                Email = efUser.Email,
+                FirstName = efUser.FirstName,
+                LastName = efUser.LastName,
+                Token = efUser.Token         
+            };
         }
 
         public void Edit(UserEditModel model)
@@ -87,7 +96,7 @@ namespace FullRESTAPI.Services
 
             if (user == null)
             {
-                throw new ArgumentException("Email or password is incorrect");
+                throw new ArgumentException("Password is incorrect");
             }
             else
             {

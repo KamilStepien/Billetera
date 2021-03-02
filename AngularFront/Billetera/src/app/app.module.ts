@@ -50,6 +50,8 @@ import { BilansComponent } from './main-continer/databoard/bilans/bilans.compone
 import { JarService } from './shared/jar.service';
 import { AuthGuardService } from './shared/auth-guard-service.service';
 import { TransactionSearchComponent } from './main-continer/transactions/transaction-search/transaction-search.component';
+import { UserComponent } from './main-continer/user/user.component';
+import { UserEditComponent } from './main-continer/user/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { TransactionSearchComponent } from './main-continer/transactions/transac
     NotificationListElementComponent,
     BilansComponent,
     TransactionSearchComponent,
+    UserComponent,
+    UserEditComponent,
     
   ],
   imports: [

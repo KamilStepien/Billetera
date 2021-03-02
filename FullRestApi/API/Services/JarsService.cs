@@ -173,7 +173,7 @@ namespace FullRESTAPI.Services
             List<JarModel> jars = new List<JarModel>();
 
             _applicationDBContex.Jars
-                .Where(x => x.User.ID == userId && x.State == JarState.inProgress)
+                .Where(x => x.User.ID == userId)
                 .ToList()
                 .ForEach(x =>
                 {

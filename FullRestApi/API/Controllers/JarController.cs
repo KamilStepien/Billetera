@@ -15,16 +15,18 @@ namespace FullRESTAPI.Controllers
     {
 
         IJarService _jarService;
+        INotificationService _notificationService;
 
-        public JarController(IJarService jarService)
+        public JarController(IJarService jarService, INotificationService notificationService)
         {
             _jarService = jarService;
+            _notificationService = notificationService;
         }
 
         [HttpGet("user/{userId}")]
         public ActionResult<IEnumerable<JarModel>> GetJars(int userId)
         {
-            IEnumerable<JarModel> jars = _jarService.GetAll(userId);
+            IEnumerable<JarModel> jars = _jarService.GetAll(userId).Where(x => x.State == Models.EFModels.JarState.inProgress);
 
             if (jars == null  )
             {
@@ -68,6 +70,14 @@ namespace FullRESTAPI.Controllers
             try
             {
                 _jarService.EndJar(model);
+                var jarCount = _jarService.GetAll(model.UserId).Where(x=>x.State == Models.EFModels.JarState.Reached).Count();
+
+                if (jarCount == 1)
+                    _notificationService.ActiveNotyfication(model.UserId, 2);
+                if (jarCount == 5)
+                    _notificationService.ActiveNotyfication(model.UserId, 3);
+                if (jarCount == 10)
+                    _notificationService.ActiveNotyfication(model.UserId, 4);
                 return Ok();
             }
             catch (ArgumentException ex)

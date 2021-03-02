@@ -10,7 +10,9 @@ import { ShoppingListComponent } from './main-continer/shopping-list/shopping-li
 import { TransactionAddEditComponent } from './main-continer/transactions/transaction-add-edit/transaction-add-edit.component';
 
 import { TransactionsComponent } from './main-continer/transactions/transactions.component';
+import { UserComponent } from './main-continer/user/user.component';
 import { AuthGuardService } from './shared/auth-guard-service.service';
+import { UserModule } from './shared/user.module';
 import { StartPageComponent } from './start-page/start-page.component';
 import { UserAuthenticateComponent } from './user-authenticate/user-authenticate.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
@@ -28,7 +30,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DataboardComponent, canActivate : [AuthGuardService]},
   { path: 'shoppingList', component: ShoppingListComponent, canActivate : [AuthGuardService]},
   { path: 'jar/add', component: JarsAddEditComponent, canActivate : [AuthGuardService]},
-  { path: 'jar/edit/:id', component: JarsAddEditComponent, canActivate : [AuthGuardService]}
+  { path: 'jar/edit/:id', component: JarsAddEditComponent, canActivate : [AuthGuardService]},
+  { path: 'user/edit', component: UserComponent,canActivate : [AuthGuardService]}
 
 
 ]

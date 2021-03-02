@@ -8,8 +8,11 @@
         display: flex;
     }
 
-    .form-continer
+    .form
     {
-        align-items: center;
+        
+        align-items: stretch;
+        justify-content: stretch;
+        align-content: stretch;
     }
 }

@@ -17,7 +17,7 @@ export class TransactionAddEditComponent implements OnInit {
     id:new FormControl('',),
     categorieId:new FormControl('',[Validators.required]),
     title: new FormControl('',[Validators.required]),
-    amount: new FormControl('',[Validators.required]),
+    amount: new FormControl('',[Validators.required, Validators.min(0)]),
     createDate: new FormControl('',[Validators.required]),
     isExpense: new FormControl('',[Validators.required])
   }

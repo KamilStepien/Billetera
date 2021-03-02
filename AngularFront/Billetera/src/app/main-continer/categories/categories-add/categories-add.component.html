@@ -4,26 +4,16 @@
             <H2>Categorie</H2>
         </mat-card-header>
         <form [formGroup]="categorie">
-            
-            <mat-form-field class="example-full-width">
-                <mat-label>Name</mat-label>
-                <input type="text" matInput placeholder="Name" formControlName="name">
-            </mat-form-field>
-            
-        
-            <div class="form-group">
-                <button mat-raised-button type="submit" (click)="submit()" [disabled]="categorie.invalid">
-                    Save
-                </button>
+            <input type="text" matInput placeholder="Name" formControlName="name">
 
-            </div>
-            <div class="form-group">
-                <button mat-raised-button type="submit" [routerLink]="['/transaction']">
-                    Back
-                </button>
+            <button mat-raised-button type="submit" (click)="submit()" [disabled]="categorie.invalid">
+                Save
+            </button>
 
-            </div>
+            <button mat-raised-button type="submit" [routerLink]="['/transaction']">
+                Back
+            </button>
+            
         </form>
-
     </div>
 </mat-card>

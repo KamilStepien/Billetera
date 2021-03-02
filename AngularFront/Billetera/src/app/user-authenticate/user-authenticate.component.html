@@ -1,27 +1,18 @@
-
-    <mat-card>
-        <div class="form-continer">
-        <mat-card-header> 
+<mat-card>
+    <div class="form-continer">
+        <mat-card-header>
             <H2>Login</H2>
         </mat-card-header>
-    <h3>{{service.errormessage}}</h3>
-    <form [formGroup]="userAuthenticate">
-
-        <mat-form-field class="example-full-width">
-            <mat-label>Email</mat-label>
+        <h3>{{service.errormessage}}</h3>
+        <form [formGroup]="userAuthenticate">
             <input type="email" matInput placeholder="Email" formControlName="email">
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <mat-label>Password</mat-label>
             <input type="password" matInput placeholder="Password" formControlName="password">
-        </mat-form-field>
-      
-
-
-        <div class="form-group">
-            <button  mat-raised-button type="submit"   (click)="authenticateUser()" [disabled]="userAuthenticate.invalid">
-                Sing In
-            </button>
-        </div>
-    </form>
-</div>  </mat-card>
+        
+                <button mat-raised-button type="submit" (click)="authenticateUser()"
+                    [disabled]="userAuthenticate.invalid">
+                    Sing In
+                </button>
+            
+        </form>
+    </div>
+</mat-card>

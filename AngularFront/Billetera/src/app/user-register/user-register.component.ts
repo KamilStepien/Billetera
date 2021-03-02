@@ -8,7 +8,7 @@ import { UserService } from '../shared/user.service';
   templateUrl: './user-register.component.html',
   styleUrls: ['./user-register.component.scss']
 })
-export class UserRegisterComponent {
+export class UserRegisterComponent implements OnInit {
 
   
   userRegister = new FormGroup({
@@ -20,6 +20,10 @@ export class UserRegisterComponent {
   )
 
   constructor(public service: UserService) { }
+
+  ngOnInit(): void {
+    this.service.cleanError();
+  }
 
   registerUser()
   { 

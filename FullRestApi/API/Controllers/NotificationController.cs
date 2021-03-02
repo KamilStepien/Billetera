@@ -35,19 +35,7 @@ namespace FullRESTAPI.Controllers
 
         }
 
-        [HttpPost("active-notyfication")]
-        public IActionResult ActiveNotyfication(ActiveNotificationModel model)
-        {
-            try
-            {
-                _notificationService.ActiveNotyfication(model);
-                return Ok();
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
+        
 
         [HttpPost("deactive-notyfication/{id}")]
         public IActionResult DeactiveNotification(int id)

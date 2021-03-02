@@ -15,11 +15,12 @@ namespace FullRESTAPI.Controllers
     {
 
         private IUserService _userService;
+        private INotificationService _notificationService;
 
-    
-        public UserController (IUserService userService)
+        public UserController (IUserService userService, INotificationService notificationService)
         {
             _userService = userService;
+            _notificationService = notificationService;
         }
 
         [AllowAnonymous]
@@ -38,13 +39,14 @@ namespace FullRESTAPI.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterModel model)
         {
-            
 
+            
             var user = new UserModel { Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
 
             try
             {
-                _userService.Create(user, model.Password);
+                var userReturn = _userService.Create(user, model.Password);
+                _notificationService.ActiveNotyfication(userReturn.Id,1);
                 return Ok();
             }
             catch (ArgumentException ex)

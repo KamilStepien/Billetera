@@ -11,7 +11,7 @@ export class CategorieModel
     name:string;
 }
 
-export interface CategorieAddModel
+export class CategorieAddModel
 {
     name:string;
 }

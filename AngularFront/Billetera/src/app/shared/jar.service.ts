@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { JarAddModel, JarAddMoneyModel, JarEditModel, JarEndModel, JarModel } from './jar.module';
 import { UserService } from './user.service';
@@ -12,7 +13,7 @@ export class JarService {
 
   jars: JarModel[]
 
-  constructor(private http:HttpClient , private userService:UserService) { }
+  constructor(private http:HttpClient , private router:Router, private userService:UserService) { }
 
   getJars()
   {
@@ -37,7 +38,7 @@ export class JarService {
     this.http.post<JarModel>("https://localhost:44364/jar", model).subscribe(
       result => 
       {
-        console.log(result);
+        this.router.navigate(["jar"]);
       }
     );
   }
@@ -49,7 +50,7 @@ export class JarService {
     this.http.put<JarModel>("https://localhost:44364/jar", model).subscribe(
       result => 
       {
-        console.log(result);
+        this.router.navigate(["jar"]);
       }
     );
   }

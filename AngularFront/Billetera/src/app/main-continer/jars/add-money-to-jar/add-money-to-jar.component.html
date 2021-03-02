@@ -1,15 +1,12 @@
-
 <form class="form-add-money" [formGroup]="addMoneyToJar">
-    <mat-form-field class="form-field">
-        <mat-label>Money</mat-label>
-        <input type="Number" matInput placeholder="Money" formControlName="money">
-    </mat-form-field>
-    <select class="form-field"  formControlName="jarId">
-        <option *ngFor="let item of jarService.jars"   [ngValue]=item.id selected>{{item.name}}</option>
+
+    <input type="Number" matInput placeholder="Money" formControlName="money">
+    <select formControlName="jarId">
+        <option *ngFor="let item of jarService.jars" [ngValue]=item.id selected>{{item.name}}</option>
     </select>
-    <div class="form-group" class="form-field">
-        <button mat-raised-button type="submit" (click)="submit()" [disabled]="addMoneyToJar.invalid">
-            Add
-        </button>
-    </div>
+
+    <button mat-raised-button type="submit" (click)="submit()" [disabled]="addMoneyToJar.invalid">
+        Add
+    </button>
+
 </form>
