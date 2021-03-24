@@ -1,0 +1,6 @@
+Otworzenie folderu Billetera\AngularFront\Billetera 
+Wykonanie poleceń 
+npm install
+ng s 
+
+Żeby appliacja prawidłowo działa wcześniej musimy uruchomic aplikacje serwerową (API)

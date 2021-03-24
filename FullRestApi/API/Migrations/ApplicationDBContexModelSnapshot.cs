@@ -213,9 +213,6 @@ namespace FullRESTAPI.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Token")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("ID");
 
                     b.ToTable("Users");

@@ -17,6 +17,7 @@ using FullRESTAPI.Context;
 using FullRESTAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using FullRESTAPI.Models;
 
 namespace FullRESTAPI
 {
@@ -34,40 +35,6 @@ namespace FullRESTAPI
         {
             services.AddDbContext<ApplicationDBContex>(options =>
             options.UseSqlServer(Configuration["Date:ConnectionString"]));
-
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-           .AddJwtBearer(x =>
-           {
-               x.Events = new JwtBearerEvents
-               {
-                   OnTokenValidated = context =>
-                   {
-                       var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-                       var userId = int.Parse(context.Principal.Identity.Name);
-                       var user = userService.GetById(userId);
-                       if (user == null)
-                       {
-                            // return unauthorized if user no longer exists
-                            context.Fail("Unauthorized");
-                       }
-                       return Task.CompletedTask;
-                   }
-               };
-               x.RequireHttpsMetadata = false;
-               x.SaveToken = true;
-               x.TokenValidationParameters = new TokenValidationParameters
-               {
-                   ValidateIssuerSigningKey = true,
-                   IssuerSigningKey = new SymmetricSecurityKey(new byte[1941411]),
-                   ValidateIssuer = false,
-                   ValidateAudience = false
-               };
-           });
-
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICategorieService, CategorieService>();
             services.AddTransient<ITransactionService, TransactionService>();
@@ -98,6 +65,9 @@ namespace FullRESTAPI
             {
                 endpoints.MapControllers();
             });
+
+            SeedData.AddCategoryToDB(app);
+            SeedData.AddNotificationToDB(app);
         }
     }
 }

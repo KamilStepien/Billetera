@@ -1,0 +1,4 @@
+Przejście w PowerShell na scieżkę ..\Billetera\FullRestApi\API i uruchomienie poniższych polecen tworzących baze danych
+
+dotnet ef migrations add InitialCreate
+dotnet ef database update 

@@ -44,24 +44,17 @@ namespace FullRESTAPI.Services
             if (user == null || user.Password != password)
                 return null;
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-               {
-                    new Claim(ClaimTypes.Name, user.ID.ToString())
-               }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(new byte[1941411]), SecurityAlgorithms.HmacSha256Signature)
-            };
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            user.Token = tokenHandler.WriteToken(token);
 
             _applicationDBContex.SaveChanges();
 
-            return new UserModel { AvatarLink = user.AvatarLink , Email = user.Email , FirstName = user.FirstName , LastName = user.LastName , Id = user.ID, Token = user.Token};
+            return new UserModel 
+            { 
+                AvatarLink = user.AvatarLink , 
+                Email = user.Email , 
+                FirstName = user.FirstName , 
+                LastName = user.LastName ,
+                Id = user.ID
+            };
            
         }
 
@@ -74,7 +67,12 @@ namespace FullRESTAPI.Services
 
             EmailValidation(user.Email);
             PasswordValidation(password);
-            var efUser = new EFUser { Email = user.Email, FirstName = user.FirstName, LastName = user.LastName, Password = password, AvatarLink = "../../../../assets/images/Avatars/1.jpg" };
+            var efUser = new EFUser { 
+                Email = user.Email, 
+                FirstName = user.FirstName, 
+                LastName = user.LastName, 
+                Password = password, 
+                AvatarLink = "../../../../assets/images/Avatars/1.jpg" };
             _applicationDBContex.Users.Add(efUser);
             _applicationDBContex.SaveChanges();
 
@@ -85,7 +83,7 @@ namespace FullRESTAPI.Services
                 Email = efUser.Email,
                 FirstName = efUser.FirstName,
                 LastName = efUser.LastName,
-                Token = efUser.Token         
+               
             };
         }
 

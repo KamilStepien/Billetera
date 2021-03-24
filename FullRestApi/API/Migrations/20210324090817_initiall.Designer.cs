@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullRESTAPI.Migrations
 {
     [DbContext(typeof(ApplicationDBContex))]
-    [Migration("20210205122713_Initial")]
-    partial class Initial
+    [Migration("20210324090817_initiall")]
+    partial class initiall
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -213,9 +213,6 @@ namespace FullRESTAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");

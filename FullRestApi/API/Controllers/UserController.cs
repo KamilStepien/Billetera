@@ -1,4 +1,5 @@
 ﻿using FullRESTAPI.Models.Users;
+using FullRESTAPI.Models.Categories;
 using FullRESTAPI.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -16,11 +17,13 @@ namespace FullRESTAPI.Controllers
 
         private IUserService _userService;
         private INotificationService _notificationService;
+        private ICategorieService _categorieService;
 
-        public UserController (IUserService userService, INotificationService notificationService)
+        public UserController (IUserService userService, INotificationService notificationService , ICategorieService categorieService)
         {
             _userService = userService;
             _notificationService = notificationService;
+            _categorieService = categorieService;
         }
 
         [AllowAnonymous]
@@ -47,6 +50,9 @@ namespace FullRESTAPI.Controllers
             {
                 var userReturn = _userService.Create(user, model.Password);
                 _notificationService.ActiveNotyfication(userReturn.Id,1);
+                _categorieService.Add(new CategorieAddModel { Name = "home", UserId = userReturn.Id });
+                _categorieService.Add(new CategorieAddModel { Name = "expenses", UserId = userReturn.Id });
+                _categorieService.Add(new CategorieAddModel { Name = "income", UserId = userReturn.Id });
                 return Ok();
             }
             catch (ArgumentException ex)

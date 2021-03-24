@@ -27,9 +27,11 @@ export class JarService {
     return this.http.get<JarModel>("https://localhost:44364/jar/"+id)
   }
 
-  postAddMoneyJat(model:JarAddMoneyModel):Observable<any>
+  postAddMoneyJar(model:JarAddMoneyModel)
   {
-    return this.http.post("https://localhost:44364/jar/add-money",model)
+     this.http.post("https://localhost:44364/jar/add-money",model).subscribe(
+      result => this.getJars()
+    );
   }
 
   postJar(model:JarAddModel)

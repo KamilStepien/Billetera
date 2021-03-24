@@ -24,9 +24,7 @@ export class AddMoneyToJarComponent implements OnInit {
 
   submit()
   {
-    this.jarService.postAddMoneyJat(this.addMoneyToJar.value).subscribe(
-      result => this.jarService.getJars()
-    );
+    this.jarService.postAddMoneyJar(this.addMoneyToJar.value);
   }
 
 }

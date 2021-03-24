@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FullRESTAPI.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initiall : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,8 +44,7 @@ namespace FullRESTAPI.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AvatarLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
