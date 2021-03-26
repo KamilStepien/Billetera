@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FullRESTAPI.Migrations
 {
     [DbContext(typeof(ApplicationDBContex))]
-    [Migration("20210324090817_initiall")]
-    partial class initiall
+    [Migration("20210326102935_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

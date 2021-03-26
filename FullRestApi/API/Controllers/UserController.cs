@@ -50,6 +50,7 @@ namespace FullRESTAPI.Controllers
             {
                 var userReturn = _userService.Create(user, model.Password);
                 _notificationService.ActiveNotyfication(userReturn.Id,1);
+                _categorieService.Add(new CategorieAddModel { Name = "jar", UserId = userReturn.Id });
                 _categorieService.Add(new CategorieAddModel { Name = "home", UserId = userReturn.Id });
                 _categorieService.Add(new CategorieAddModel { Name = "expenses", UserId = userReturn.Id });
                 _categorieService.Add(new CategorieAddModel { Name = "income", UserId = userReturn.Id });

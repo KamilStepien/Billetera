@@ -12,7 +12,7 @@ namespace FullRESTAPI.Models
 {
     public static class SeedData
     {
-        public static void AddCategoryToDB(IApplicationBuilder app)
+        public static void SeedDataDB(IApplicationBuilder app)
         {
             ApplicationDBContex context = app.ApplicationServices.GetRequiredService<ApplicationDBContex>();
 
@@ -20,20 +20,26 @@ namespace FullRESTAPI.Models
 
             if (!context.CategoriesLists.Any())
             {
-                context.CategoriesLists.AddRange(
+                context.CategoriesLists.Add(
                     new EFCategoriesLists
                     {
                         Name = "jar"
-                    },
+                    });
+                context.SaveChanges();
+                context.CategoriesLists.Add(
                     new EFCategoriesLists
                     {
                         Name = "home"
-                    },
+                    });
+                context.SaveChanges();
+                context.CategoriesLists.Add(
                     new EFCategoriesLists
                     {
                         Name = "expenses"
-                    },
-                    new EFCategoriesLists
+                    });
+                context.SaveChanges();
+                context.CategoriesLists.Add(
+                   new EFCategoriesLists
                     {
                         Name = "income"
                     }
@@ -41,41 +47,43 @@ namespace FullRESTAPI.Models
 
                 context.SaveChanges();
             }
-        }
 
-        public static void AddNotificationToDB(IApplicationBuilder app)
-        {
-            ApplicationDBContex context = app.ApplicationServices.GetRequiredService<ApplicationDBContex>();
-
-            context.Database.Migrate();
 
             if (!context.NotificationLists.Any())
             {
-                context.NotificationLists.AddRange(
+                context.NotificationLists.Add(
                    new EFNotificationLists
                    {
                        Title = "Hi",
                        Description = "Billetera"
-                   },
-                    new EFNotificationLists
-                    {
-                        Title = "Jars",
-                        Description = "You have completed 1 goal"
-                    },
+                   });
+                context.SaveChanges();
+                context.NotificationLists.Add(
+                new EFNotificationLists
+                {
+                    Title = "Jars",
+                    Description = "You have completed 1 goal"
+                });
+                context.SaveChanges();
+                context.NotificationLists.Add(
                      new EFNotificationLists
                      {
                          Title = "Jars",
                          Description = "You have completed 5 goal"
-                     },
-                      new EFNotificationLists
-                      {
-                          Title = "Jars",
-                          Description = "You have completed 10 goal"
-                      }
+                     });
+                context.SaveChanges();
+                context.NotificationLists.Add(
+                     new EFNotificationLists
+                     {
+                         Title = "Jars",
+                         Description = "You have completed 10 goal"
+                     }
                     );
 
                 context.SaveChanges();
             }
         }
+
+     
     }
 }

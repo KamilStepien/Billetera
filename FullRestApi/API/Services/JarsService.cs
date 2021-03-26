@@ -138,6 +138,9 @@ namespace FullRESTAPI.Services
 
             jar.EndDate = DateTime.Now;
 
+
+
+
             _applicationDBContex.Transactions.Add(new EFTransaction
             {
                 Amount = jar.CurrentMoney,
@@ -145,7 +148,7 @@ namespace FullRESTAPI.Services
                 Titl = "Jar",
                 CreateDate = DateTime.Now,
                 User = user,
-                Categorie = _applicationDBContex.Categories.FirstOrDefault(x => x.ID == 1)
+                Categorie = _applicationDBContex.Categories.FirstOrDefault(x => x.CategoriesLists.ID == 1 && x.User.ID == user.ID)
             }); 
 
             _applicationDBContex.SaveChanges();

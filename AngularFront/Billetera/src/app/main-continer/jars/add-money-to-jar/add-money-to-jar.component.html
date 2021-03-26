@@ -2,7 +2,7 @@
 
     <input type="Number" matInput placeholder="Money" formControlName="money">
     <select formControlName="jarId">
-        <option *ngFor="let item of jarService.jars" [ngValue]=item.id selected>{{item.name}}</option>
+        <option *ngFor="let item of jarService.jars" [ngValue]=item.id >{{item.name}}</option>
     </select>
 
     <button mat-raised-button type="submit" (click)="submit()" [disabled]="addMoneyToJar.invalid">

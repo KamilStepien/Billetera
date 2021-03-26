@@ -66,8 +66,8 @@ namespace FullRESTAPI
                 endpoints.MapControllers();
             });
 
-            SeedData.AddCategoryToDB(app);
-            SeedData.AddNotificationToDB(app);
+            SeedData.SeedDataDB(app);
+    
         }
     }
 }
